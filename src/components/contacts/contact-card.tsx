@@ -1,7 +1,7 @@
 /**
- * 📝 @/components/contacts/contact-card.tsx
- * Version: 1.0.0
- * lastUpdatedAt:[{ "date": "31/10/2025", "by": ["BomBa"], "comment": "ملف لبطاقة جهة الاتصال مع ميزات التعديل والحذف ونسخ رقم الهاتف." }]
+ * @file : @/components/contacts/contact-card.tsx
+ * @version : 1.0.0
+ * @lastUpdatedAt : [{ "date": "31/10/2025", "by": ["BomBa"], "comment": "ملف لبطاقة جهة الاتصال مع ميزات التعديل والحذف ونسخ رقم الهاتف." }]
  */
 
 import React, { useState } from 'react';
@@ -41,7 +41,7 @@ export const ContactCard: React.FC<ContactCardProps> = ({
   };
 
   return (
-    <div className="bg-white dark:bg-gray-800 rounded-xl shadow-sm border border-gray-200 dark:border-gray-700 p-6 hover:shadow-md transition-shadow">
+    <div className="bg-white dark:bg-gray-800 rounded- shadow-sm border border-gray-200 dark:border-gray-700 p-6 hover:shadow-md transition-shadow">
       {/* رأس البطاقة مع القائمة */}
       <div className="flex justify-between items-start mb-4">
         <h3 className="text-lg font-semibold text-gray-900 dark:text-white">
@@ -59,7 +59,7 @@ export const ContactCard: React.FC<ContactCardProps> = ({
 
           {/* قائمة الإجراءات */}
           {showMenu && (
-            <div className="absolute left-0 top-full mt-1 w-48 bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-lg shadow-lg z-10">
+            <div className="absolute left-0 top-full mt-1 w-48 bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-md shadow-lg z-10">
               <button
                 onClick={() => {
                   onEdit(contact);
@@ -151,7 +151,7 @@ export const ContactCard: React.FC<ContactCardProps> = ({
 
         {/* الملاحظات */}
         {contact.notes && (
-          <div className="text-sm text-gray-600 dark:text-gray-400 bg-gray-50 dark:bg-gray-900 rounded-lg p-3">
+          <div className="text-sm text-gray-600 dark:text-gray-400 bg-gray-50 dark:bg-gray-900 rounded-md p-3">
             {contact.notes}
           </div>
         )}

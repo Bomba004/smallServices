@@ -1,7 +1,7 @@
 /**
- * 📝 @/components/contacts/contact-form.tsx
- * Version: 1.0.0
- * lastUpdatedAt:[{ "date": "31/10/2025", "by": ["BomBa"], "comment": "ملف لنموذج إضافة/تعديل جهة الاتصال مع حقول للتحقق من الصحة وقائمة اختيار الدولة" }]
+ * @file : @/components/contacts/contact-form.tsx
+ * @version : 1.0.0
+ * @lastUpdatedAt : [{ "date": "31/10/2025", "by": ["BomBa"], "comment": "ملف لنموذج إضافة/تعديل جهة الاتصال مع حقول للتحقق من الصحة وقائمة اختيار الدولة" }]
  */
 
 import React, { useState, useEffect } from 'react';
@@ -135,7 +135,7 @@ export const ContactForm: React.FC<ContactFormProps> = ({
             <button
               type="button"
               onClick={() => setShowCountryList(!showCountryList)}
-              className="w-full px-3 py-2 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent dark:bg-gray-800 dark:border-gray-600 dark:text-white flex items-center justify-between"
+              className="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent dark:bg-gray-800 dark:border-gray-600 dark:text-white flex items-center justify-between"
             >
               <span>{selectedCountry?.flag} {selectedCountry?.code}</span>
               <ChevronDown className="w-4 h-4" />
@@ -143,7 +143,7 @@ export const ContactForm: React.FC<ContactFormProps> = ({
 
             {/* قائمة الدول */}
             {showCountryList && (
-              <div className="absolute top-full left-0 right-0 mt-1 bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-lg shadow-lg z-10 max-h-60 overflow-y-auto">
+              <div className="absolute top-full left-0 right-0 mt-1 bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-md shadow-lg z-10 max-h-60 overflow-y-auto">
                 {/* شريط البحث في القائمة */}
                 <div className="p-2 border-b border-gray-200 dark:border-gray-700">
                   <div className="relative">
@@ -153,7 +153,7 @@ export const ContactForm: React.FC<ContactFormProps> = ({
                       placeholder="ابحث عن دولة..."
                       value={countrySearch}
                       onChange={(e) => setCountrySearch(e.target.value)}
-                      className="w-full pl-3 pr-10 py-2 text-sm border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:text-white"
+                      className="w-full pl-3 pr-10 py-2 text-sm border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:text-white"
                     />
                   </div>
                 </div>
@@ -185,7 +185,7 @@ export const ContactForm: React.FC<ContactFormProps> = ({
               type="tel"
               value={formData.phone}
               onChange={(e) => handleChange('phone', e.target.value)}
-              className="w-full px-3 py-2 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent dark:bg-gray-800 dark:border-gray-600 dark:text-white"
+              className="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent dark:bg-gray-800 dark:border-gray-600 dark:text-white"
               placeholder="رقم الهاتف"
             />
           </div>
@@ -214,7 +214,7 @@ export const ContactForm: React.FC<ContactFormProps> = ({
           value={formData.notes}
           onChange={(e) => handleChange('notes', e.target.value)}
           rows={3}
-          className="w-full px-3 py-2 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent dark:bg-gray-800 dark:border-gray-600 dark:text-white resize-none"
+          className="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent dark:bg-gray-800 dark:border-gray-600 dark:text-white resize-none"
           placeholder="أي ملاحظات إضافية..."
         />
       </div>

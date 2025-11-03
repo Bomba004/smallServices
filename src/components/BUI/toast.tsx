@@ -1,7 +1,7 @@
 /**
- * 📝 @/components/ui/toast.tsx
- * Version: 1.0.0
- * lastUpdatedAt:[{ "date": "31/10/2025", "by": ["BomBa"], "comment": "ملف مكون Toast لعرض الإشعارات للمستخدم, مع دعم لأنواع متعددة من الإشعارات" }]
+ * @file : @/components/ui/toast.tsx
+ * @version : 1.0.0
+ * @lastUpdatedAt : [{ "date": "31/10/2025", "by": ["BomBa"], "comment": "ملف مكون Toast لعرض الإشعارات للمستخدم, مع دعم لأنواع متعددة من الإشعارات" }]
  */
 
 import React, { useEffect, useState } from 'react';
@@ -90,7 +90,7 @@ export const Toast: React.FC<ToastProps> = ({
   return (
     <div
       className={cn(
-        'flex items-center w-full max-w-sm p-4 mb-2 rounded-lg shadow-lg border transform transition-all duration-300',
+        'flex items-center w-full max-w-sm p-4 mb-2 rounded-md shadow-lg border transform transition-all duration-300',
         styles.bg,
         styles.border,
         isLeaving ? 'opacity-0 scale-95' : 'opacity-100 scale-100'
@@ -112,7 +112,7 @@ export const Toast: React.FC<ToastProps> = ({
         type="button"
         onClick={handleClose}
         className={cn(
-          'ml-auto -mx-1.5 -my-1.5 rounded-lg p-1.5 inline-flex items-center justify-center h-8 w-8 transition-colors',
+          'ml-auto -mx-1.5 -my-1.5 rounded-md p-1.5 inline-flex items-center justify-center h-8 w-8 transition-colors',
           'hover:bg-gray-100 dark:hover:bg-gray-700',
           styles.text
         )}

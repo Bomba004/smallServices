@@ -1,17 +1,29 @@
 /**
- * 📝 @/main.tsx
- * Version: 1.0.0
- * lastUpdatedAt:[{ "date": "31/10/2025", "by": ["BomBa"], "comment": "ملف الإدخال الرئيسي للتطبيق" }]
+ * @file : @/main.tsx
+ * @version : 1.0.1
+ * @lastUpdatedAt : [{ "date": "01/11/2025", "by": ["BomBa"], "comment": "تهيئة احترافية للثيم قبل الـ Hydration" }]
  */
 
-import React from 'react';
-import ReactDOM from 'react-dom/client';
-import App from './App.tsx';
-import './index.css';
+import {
+  StrictMode, createRoot,
+  Provider,
+  store,
 
-// تهيئة التطبيق
-ReactDOM.createRoot(document.getElementById('root')!).render(
-  <React.StrictMode>
+  App,
+  LoaderScreen,
+ } from '@/alias';
+import { PersistGate } from 'redux-persist/integration/react';
+import { persistor } from './store';
+
+// نقطة تشغيل التطبيق
+createRoot(document.getElementById('root')!).render(
+  <StrictMode>
+    <Provider store={store}>
+  <PersistGate loading={<LoaderScreen />} persistor={persistor}>
     <App />
-  </React.StrictMode>,
+  </PersistGate>
+</Provider>
+  </StrictMode>,
 );
+
+

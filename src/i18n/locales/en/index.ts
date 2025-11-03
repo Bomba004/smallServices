@@ -1,0 +1,95 @@
+export default {
+  "setting": {
+    "loading": "Loading",
+    "startLoading": "Start Loading",
+    "loadingData": "Loading data... Please wait. ⏳",
+  },
+
+  "app": {
+    "title": "Contact Management System",
+    "description": "Manage your contacts easily and securely"
+  },
+  "common": {
+    "save": "Save",
+    "cancel": "Cancel",
+    "delete": "Delete",
+    "edit": "Edit",
+    "search": "Search",
+    "clear": "Clear",
+    "update": "Update",
+    "confirm": "Confirm",
+    "loading": "Loading...",
+    "error": "Error",
+    "success": "Success",
+    "required": "Required",
+    "optional": "Optional"
+  },
+  "contacts": {
+    "title": "Contacts",
+    "add": "Add Contact",
+    "edit": "Edit Contact",
+    "list": "Contacts List",
+    "noContacts": "No contacts available",
+    "name": "Name",
+    "phone": "Phone Number",
+    "email": "Email",
+    "notes": "Notes",
+    "country": "Country",
+    "createdAt": "Created At",
+    "actions": "Actions",
+    "total": "Total Contacts",
+    "searchPlaceholder": "Search by name or phone...",
+    "confirmDelete": "Are you sure you want to delete this contact?",
+    "confirmPermanentDelete": "Are you sure you want to permanently delete? This action cannot be undone.",
+    "contactAdded": "Contact added successfully",
+    "contactUpdated": "Contact updated successfully",
+    "contactDeleted": "Contact deleted successfully"
+  },
+  "validation": {
+    "required": "This field is required",
+    "invalidPhone": "Invalid phone number",
+    "invalidEmail": "Invalid email address",
+    "nameLength": "Name must be between 2 and 50 characters",
+    "notesLength": "Notes must not exceed 500 characters"
+  },
+  "settings": {
+    "title": "Settings",
+    "theme": "Theme",
+    "language": "Language",
+    "light": "Light",
+    "dark": "Dark",
+    "auto": "Auto",
+    "arabic": "Arabic",
+    "english": "English",
+    "defaultCountry": "Default Country",
+    "notifications": "Notifications",
+    "autoBackup": "Auto Backup"
+  },
+  "countries": {
+    "+20": "Egypt",
+    "+966": "Saudi Arabia",
+    "+971": "UAE",
+    "+973": "Bahrain",
+    "+974": "Qatar",
+    "+965": "Kuwait",
+    "+968": "Oman",
+    "+962": "Jordan",
+    "+963": "Syria",
+    "+961": "Lebanon"
+  },
+  "navigation": {
+    "home": "Home",
+    "contacts": "Contacts",
+    "favorites": "Favorites",
+    "archived": "Archived",
+    "trash": "Trash",
+    "settings": "Settings",
+    "help": "Help"
+  },
+  "toast": {
+    "success": "Success",
+    "error": "Error",
+    "warning": "Warning",
+    "info": "Info"
+  }
+}

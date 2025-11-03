@@ -1,7 +1,7 @@
 /**
- * 📝 @/lib/constants.ts
- * Version: 1.0.0
- * lastUpdatedAt:[{ "date": "31/10/2025", "by": ["BomBa"], "comment": "ملف يحتوي على ثوابت النظام مثل رموز الدول والإعدادات الافتراضية والترجمات" }]
+ * @file : @/lib/constants.ts
+ * @version : 1.0.0
+ * @lastUpdatedAt : [{ "date": "31/10/2025", "by": ["BomBa"], "comment": "ملف يحتوي على ثوابت النظام مثل رموز الدول والإعدادات الافتراضية والترجمات" }]
  * 
  */
 
@@ -56,60 +56,61 @@ export const DEFAULT_SETTINGS: AppSettings = {
   defaultCountry: '+20'
 };
 
-// ترجمات النظام
-export const TRANSLATIONS = {
-  ar: {
-    appTitle: 'نظام إدارة جهات الاتصال',
-    addContact: 'إضافة جهة اتصال',
-    editContact: 'تعديل جهة اتصال',
-    name: 'الاسم',
-    phone: 'رقم الهاتف',
-    email: 'البريد الإلكتروني',
-    notes: 'ملاحظات',
-    save: 'حفظ',
-    cancel: 'إلغاء',
-    delete: 'حذف',
-    edit: 'تعديل',
-    search: 'بحث...',
-    noContacts: 'لا توجد جهات اتصال',
-    confirmDelete: 'هل أنت متأكد من حذف جهة الاتصال؟',
-    contactAdded: 'تم إضافة جهة الاتصال بنجاح',
-    contactUpdated: 'تم تحديث جهة الاتصال بنجاح',
-    contactDeleted: 'تم حذف جهة الاتصال بنجاح',
-    invalidPhone: 'رقم الهاتف غير صالح',
-    requiredField: 'هذا الحقل مطلوب',
-    settings: 'الإعدادات',
-    theme: 'المظهر',
-    language: 'اللغة',
-    light: 'فاتح',
-    dark: 'داكن',
-    auto: 'تلقائي'
-  },
-  en: {
-    appTitle: 'Contact Management System',
-    addContact: 'Add Contact',
-    editContact: 'Edit Contact',
-    name: 'Name',
-    phone: 'Phone Number',
-    email: 'Email',
-    notes: 'Notes',
-    save: 'Save',
-    cancel: 'Cancel',
-    delete: 'Delete',
-    edit: 'Edit',
-    search: 'Search...',
-    noContacts: 'No contacts available',
-    confirmDelete: 'Are you sure you want to delete this contact?',
-    contactAdded: 'Contact added successfully',
-    contactUpdated: 'Contact updated successfully',
-    contactDeleted: 'Contact deleted successfully',
-    invalidPhone: 'Invalid phone number',
-    requiredField: 'This field is required',
-    settings: 'Settings',
-    theme: 'Theme',
-    language: 'Language',
-    light: 'Light',
-    dark: 'Dark',
-    auto: 'Auto'
-  }
-};
+// [ ] TODO:Define system translations here
+// // ترجمات النظام
+// export const TRANSLATIONS = {
+//   ar: {
+//     appTitle: 'نظام إدارة جهات الاتصال',
+//     addContact: 'إضافة جهة اتصال',
+//     editContact: 'تعديل جهة اتصال',
+//     name: 'الاسم',
+//     phone: 'رقم الهاتف',
+//     email: 'البريد الإلكتروني',
+//     notes: 'ملاحظات',
+//     save: 'حفظ',
+//     cancel: 'إلغاء',
+//     delete: 'حذف',
+//     edit: 'تعديل',
+//     search: 'بحث...',
+//     noContacts: 'لا توجد جهات اتصال',
+//     confirmDelete: 'هل أنت متأكد من حذف جهة الاتصال؟',
+//     contactAdded: 'تم إضافة جهة الاتصال بنجاح',
+//     contactUpdated: 'تم تحديث جهة الاتصال بنجاح',
+//     contactDeleted: 'تم حذف جهة الاتصال بنجاح',
+//     invalidPhone: 'رقم الهاتف غير صالح',
+//     requiredField: 'هذا الحقل مطلوب',
+//     settings: 'الإعدادات',
+//     theme: 'المظهر',
+//     language: 'اللغة',
+//     light: 'فاتح',
+//     dark: 'داكن',
+//     auto: 'تلقائي'
+//   },
+//   en: {
+//     appTitle: 'Contact Management System',
+//     addContact: 'Add Contact',
+//     editContact: 'Edit Contact',
+//     name: 'Name',
+//     phone: 'Phone Number',
+//     email: 'Email',
+//     notes: 'Notes',
+//     save: 'Save',
+//     cancel: 'Cancel',
+//     delete: 'Delete',
+//     edit: 'Edit',
+//     search: 'Search...',
+//     noContacts: 'No contacts available',
+//     confirmDelete: 'Are you sure you want to delete this contact?',
+//     contactAdded: 'Contact added successfully',
+//     contactUpdated: 'Contact updated successfully',
+//     contactDeleted: 'Contact deleted successfully',
+//     invalidPhone: 'Invalid phone number',
+//     requiredField: 'This field is required',
+//     settings: 'Settings',
+//     theme: 'Theme',
+//     language: 'Language',
+//     light: 'Light',
+//     dark: 'Dark',
+//     auto: 'Auto'
+//   }
+// };

@@ -1,24 +1,27 @@
 /**
- * 📝 @/components/layout/header.tsx
- * Version: 1.0.0
- * lastUpdatedAt:[{ "date": "31/10/2025", "by": ["BomBa"], "comment": "ملف لرأس التطبيق مع دعم تبديل الثيم واللغة باستخدام أنماط Tailwind CSS" }]
+ * @file : @/components/layout/header.tsx
+ * @version : 1.0.0
+ * @lastUpdatedAt : [{ "date": "31/10/2025", "by": ["BomBa"], "comment": "ملف لرأس التطبيق مع دعم تبديل الثيم واللغة باستخدام أنماط Tailwind CSS" }]
  */
 
-import React from 'react';
-import { Button } from '../BUI/button';
-import { Sun, Moon, Settings, Languages } from 'lucide-react';
-import { useTheme } from '../../hooks/use-theme';
-import { useLocalization } from '../../hooks/use-localization';
+import { Button, Languages, Moon, Settings, Sun, useTranslation, 
+  useSettings,
+  // useLocalization, useTheme,
+ } from "@/alias";
+
+
 
 // أنواع props للرأس
-interface HeaderProps {
-  onSettingsOpen: () => void;
-}
+interface HeaderProps { onSettingsOpen: () => void; }
 
 // مكون رأس التطبيق
 export const Header: React.FC<HeaderProps> = ({ onSettingsOpen }) => {
-  const { theme, setTheme, effectiveTheme } = useTheme();
-  const { language, setLanguage, t } = useLocalization();
+// 🧠 قراءة الإعدادات من Cookies وتطبيقها مبكرًا
+const { theme, language, changeTheme, changeLanguage } = useSettings()
+
+  // const { language, setLanguage, t } = useLocalization();
+  const { t } = useTranslation() // Hook الترجمة
+
 
   return (
     <header className="border-b border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-800">
@@ -26,7 +29,7 @@ export const Header: React.FC<HeaderProps> = ({ onSettingsOpen }) => {
         <div className="flex items-center justify-between">
           {/* العنوان */}
           <div className="flex items-center gap-3">
-            <div className="w-8 h-8 bg-blue-600 rounded-lg flex items-center justify-center">
+            <div className="w-8 h-8 bg-blue-600 rounded-md flex items-center justify-center">
               <span className="text-white font-bold">📒</span>
             </div>
             <h1 className="text-xl font-bold text-gray-900 dark:text-white">
@@ -40,7 +43,7 @@ export const Header: React.FC<HeaderProps> = ({ onSettingsOpen }) => {
             <Button
               variant="ghost"
               size="sm"
-              onClick={() => setLanguage(language === 'ar' ? 'en' : 'ar')}
+              onClick={() => changeLanguage(language === 'ar' ? 'en' : 'ar')}
               title={language === 'ar' ? 'Switch to English' : 'التغيير إلى العربية'}
             >
               <Languages className="w-4 h-4" />
@@ -51,17 +54,10 @@ export const Header: React.FC<HeaderProps> = ({ onSettingsOpen }) => {
             <Button
               variant="ghost"
               size="sm"
-              onClick={() => {
-                const newTheme = theme === 'light' ? 'dark' : theme === 'dark' ? 'auto' : 'light';
-                setTheme(newTheme);
-              }}
+              onClick={() => { changeTheme(theme === 'light' ? 'dark' : 'light'); }}
               title="تبديل المظهر"
             >
-              {effectiveTheme === 'dark' ? (
-                <Sun className="w-4 h-4" />
-              ) : (
-                <Moon className="w-4 h-4" />
-              )}
+              {theme === 'dark' ? ( <Sun className="w-4 h-4" /> ) : ( <Moon className="w-4 h-4" /> )}
             </Button>
 
             {/* الإعدادات */}

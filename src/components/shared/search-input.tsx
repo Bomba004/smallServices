@@ -1,7 +1,7 @@
 /**
- * 📝 @/components/shared/search-input.tsx
- * Version: 1.0.0
- * lastUpdatedAt:[{ "date": "31/10/2025", "by": ["BomBa"], "comment": "ملف لمكون حقل البحث المتقدم مع إمكانيات الفلترة" }]
+ * @file : @/components/shared/search-input.tsx
+ * @version : 1.0.0
+ * @lastUpdatedAt : [{ "date": "31/10/2025", "by": ["BomBa"], "comment": "ملف لمكون حقل البحث المتقدم مع إمكانيات الفلترة" }]
  */
 
 import React, { useState, useRef, useEffect } from 'react';
@@ -97,7 +97,7 @@ export const SearchInput: React.FC<SearchInputProps> = ({
     <div className={cn('relative', className)}>
       <div
         className={cn(
-          'flex items-center border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-800 transition-all duration-200',
+          'flex items-center border border-gray-300 dark:border-gray-600 rounded-md bg-white dark:bg-gray-800 transition-all duration-200',
           isFocused && 'ring-2 ring-blue-500 border-blue-500',
           value && 'border-blue-300 dark:border-blue-700'
         )}
@@ -151,7 +151,7 @@ export const SearchInput: React.FC<SearchInputProps> = ({
 
               {/* لوحة الفلترة */}
               {showFilterPanel && (
-                <div className="absolute left-0 top-full mt-2 w-80 bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-lg shadow-lg z-50 p-4">
+                <div className="absolute left-0 top-full mt-2 w-80 bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-md shadow-lg z-50 p-4">
                   <h3 className="font-medium text-gray-900 dark:text-white mb-3">
                     الفلترة المتقدمة
                   </h3>
@@ -167,7 +167,7 @@ export const SearchInput: React.FC<SearchInputProps> = ({
                         onChange={(e) => handleFilterChange({ 
                           country: e.target.value || undefined 
                         })}
-                        className="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-700 text-gray-900 dark:text-white"
+                        className="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-md bg-white dark:bg-gray-700 text-gray-900 dark:text-white"
                       >
                         <option value="">كل الدول</option>
                         <option value="+20">مصر</option>
@@ -192,7 +192,7 @@ export const SearchInput: React.FC<SearchInputProps> = ({
                       </button>
                       <button
                         onClick={() => setShowFilterPanel(false)}
-                        className="px-3 py-2 text-sm bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors"
+                        className="px-3 py-2 text-sm bg-blue-600 text-white rounded-md hover:bg-blue-700 transition-colors"
                       >
                         تطبيق
                       </button>
@@ -214,7 +214,7 @@ export const SearchInput: React.FC<SearchInputProps> = ({
 
       {/* نتائج البحث السريع (يمكن توسيعه لاحقاً) */}
       {value && isFocused && (
-        <div className="absolute top-full left-0 right-0 mt-1 bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-lg shadow-lg z-40 max-h-60 overflow-y-auto">
+        <div className="absolute top-full left-0 right-0 mt-1 bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-md shadow-lg z-40 max-h-60 overflow-y-auto">
           <div className="p-3 text-sm text-gray-500 dark:text-gray-400">
             اكتب للبحث في الأسماء وأرقام الهواتف...
           </div>

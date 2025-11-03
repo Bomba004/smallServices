@@ -1,7 +1,7 @@
 /**
- * 📝 @/components/contacts/contact-list.tsx
- * Version: 1.0.0
- * lastUpdatedAt:[{ "date": "31/10/2025", "by": ["BomBa"], "comment": "ملف لقائمة جهات الاتصال مع ميزات البحث والإحصائيات, وإظهار حالة عدم وجود نتائج." }]
+ * @file : @/components/contacts/contact-list.tsx
+ * @version : 1.0.0
+ * @lastUpdatedAt : [{ "date": "31/10/2025", "by": ["BomBa"], "comment": "ملف لقائمة جهات الاتصال مع ميزات البحث والإحصائيات, وإظهار حالة عدم وجود نتائج." }]
  */
 
 import React from 'react';
@@ -38,7 +38,7 @@ export const ContactList: React.FC<ContactListProps> = ({
           placeholder="ابحث بالاسم أو رقم الهاتف..."
           value={searchQuery}
           onChange={(e) => onSearchChange(e.target.value)}
-          className="w-full pl-3 pr-10 py-3 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent dark:bg-gray-800 dark:border-gray-600 dark:text-white"
+          className="w-full pl-3 pr-10 py-3 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent dark:bg-gray-800 dark:border-gray-600 dark:text-white"
         />
       </div>
 

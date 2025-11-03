@@ -1,15 +1,16 @@
 /**
- * 📝 @/types/index.ts
- * Version: 1.0.0
- * lastUpdatedAt:[{ "date": "31/10/2025", "by": ["BomBa"], "comment": "" }]
- * lastUpdatedAt:[{ "date": "31/10/2025", "by": ["BomBa"], "comment": "ملف لضبط و تنظيم الانواع" }]
+ * @file : @/types/index.ts
+ * @version : 1.0.0
+ * @lastUpdatedAt : [{ "date": "31/10/2025", "by": ["BomBa"], "comment": "" }]
+ * @lastUpdatedAt : [{ "date": "31/10/2025", "by": ["BomBa"], "comment": "ملف لضبط و تنظيم الانواع" }]
  */
 
 // أنواع جديدة للـ Toast
-export type ToastType = 'success' | 'error' | 'warning' | 'info';
-export type Theme = 'light' | 'dark' | 'auto';
-export type Language = 'ar' | 'en';
-export type PrintFormat = 'a4' | 'a5' | 'receipt';
+export type T_Loader = boolean;
+export type T_Theme = 'light' | 'dark' | 'auto';
+export type T_ToastType = 'success' | 'error' | 'warning' | 'info';
+export type T_Language = 'ar' | 'en';
+export type T_PrintFormat = 'a4' | 'a5' | 'receipt';
 
 
 
@@ -17,7 +18,7 @@ export type PrintFormat = 'a4' | 'a5' | 'receipt';
 export interface Toast {
   id: string;
   message: string;
-  type: ToastType;
+  type: T_ToastType;
   duration?: number;
 }
 
@@ -33,8 +34,8 @@ export interface FilterOptions {
 
 // أنواع إضافية للإعدادات
 export interface AppSettings {
-  theme: Theme;
-  language: Language;
+  theme: T_Theme;
+  language: T_Language;
   defaultCountry: string;
   enableNotifications: boolean;
   autoBackup: boolean;
@@ -64,7 +65,7 @@ export interface Country {
 
 // نوع إعدادات التطبيق
 export interface AppSettings {
-  theme: Theme;
-  language: Language;
+  theme: T_Theme;
+  language: T_Language;
   defaultCountry: string;
 }

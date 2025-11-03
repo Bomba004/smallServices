@@ -1,7 +1,7 @@
 /**
- * 📝 @/components/shared/theme-toggle.tsx
- * Version: 1.0.0
- * lastUpdatedAt:[{ "date": "31/10/2025", "by": ["BomBa"], "comment": "ملف لمكون تبديل الثيم بين الفاتح والداكن والتلقائي, مع دعم عدة أنماط عرض" }]
+ * @file : @/components/shared/theme-toggle.tsx
+ * @version : 1.0.0
+ * @lastUpdatedAt : [{ "date": "31/10/2025", "by": ["BomBa"], "comment": "ملف لمكون تبديل الثيم بين الفاتح والداكن والتلقائي, مع دعم عدة أنماط عرض" }]
  */
 
 import React from 'react';
@@ -77,7 +77,7 @@ export const ThemeToggle: React.FC<ThemeToggleProps> = ({
         <select
           value={theme}
           onChange={(e) => setTheme(e.target.value as any)}
-          className="px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-800 text-gray-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-blue-500"
+          className="px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-md bg-white dark:bg-gray-800 text-gray-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-blue-500"
         >
           {themeOptions.map((option) => (
             <option key={option.value} value={option.value}>
@@ -95,7 +95,7 @@ export const ThemeToggle: React.FC<ThemeToggleProps> = ({
       <label className="text-sm font-medium text-gray-700 dark:text-gray-300">
         {t('theme')}
       </label>
-      <div className="flex border border-gray-300 dark:border-gray-600 rounded-lg bg-gray-50 dark:bg-gray-800 p-1">
+      <div className="flex border border-gray-300 dark:border-gray-600 rounded-md bg-gray-50 dark:bg-gray-800 p-1">
         {themeOptions.map((option) => {
           const Icon = option.icon;
           const isActive = theme === option.value;

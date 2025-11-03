@@ -1,7 +1,7 @@
 /**
- * 📝 @/components/layout/sidebar.tsx
- * Version: 1.0.0
- * lastUpdatedAt:[{ "date": "31/10/2025", "by": ["BomBa"], "comment": "ملف لمكون الشريط الجانبي للتطبيق, مع دعم التنقل بين الأقسام المختلفة" }]
+ * @file : @/components/layout/sidebar.tsx
+ * @version : 1.0.0
+ * @lastUpdatedAt : [{ "date": "31/10/2025", "by": ["BomBa"], "comment": "ملف لمكون الشريط الجانبي للتطبيق, مع دعم التنقل بين الأقسام المختلفة" }]
  */
 
 import React from 'react';
@@ -134,7 +134,7 @@ export const Sidebar: React.FC<SidebarProps> = ({
             </h2>
             <button
               onClick={onClose}
-              className="lg:hidden p-2 text-gray-400 hover:text-gray-600 dark:hover:text-gray-300 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-700"
+              className="lg:hidden p-2 text-gray-400 hover:text-gray-600 dark:hover:text-gray-300 rounded-md hover:bg-gray-100 dark:hover:bg-gray-700"
             >
               <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
@@ -156,7 +156,7 @@ export const Sidebar: React.FC<SidebarProps> = ({
                     onClose(); // إغلاق الشريط على الجوال بعد الاختيار
                   }}
                   className={cn(
-                    'w-full flex items-center gap-3 px-4 py-3 text-right rounded-lg transition-colors',
+                    'w-full flex items-center gap-3 px-4 py-3 text-right rounded-md transition-colors',
                     isActive
                       ? 'bg-blue-50 dark:bg-blue-900/20 text-blue-700 dark:text-blue-300 border-r-2 border-blue-600'
                       : 'text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700'
@@ -172,13 +172,13 @@ export const Sidebar: React.FC<SidebarProps> = ({
           {/* إحصائيات سريعة */}
           <div className="px-4 py-6 border-t border-gray-200 dark:border-gray-700">
             <div className="grid grid-cols-2 gap-4 text-center">
-              <div className="bg-gray-50 dark:bg-gray-700 rounded-lg p-3">
+              <div className="bg-gray-50 dark:bg-gray-700 rounded-md p-3">
                 <div className="text-2xl font-bold text-gray-900 dark:text-white">42</div>
                 <div className="text-xs text-gray-500 dark:text-gray-400">
                   {language === 'ar' ? 'جهة اتصال' : 'Contacts'}
                 </div>
               </div>
-              <div className="bg-gray-50 dark:bg-gray-700 rounded-lg p-3">
+              <div className="bg-gray-50 dark:bg-gray-700 rounded-md p-3">
                 <div className="text-2xl font-bold text-gray-900 dark:text-white">5</div>
                 <div className="text-xs text-gray-500 dark:text-gray-400">
                   {language === 'ar' ? 'مفضلة' : 'Favorites'}
@@ -196,7 +196,7 @@ export const Sidebar: React.FC<SidebarProps> = ({
                 <a
                   key={item.id}
                   href={item.href}
-                  className="flex items-center gap-3 px-4 py-3 text-right text-gray-700 dark:text-gray-300 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors"
+                  className="flex items-center gap-3 px-4 py-3 text-right text-gray-700 dark:text-gray-300 rounded-md hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors"
                 >
                   <Icon className="w-5 h-5 flex-shrink-0" />
                   <span className="flex-1">{item.label[language]}</span>

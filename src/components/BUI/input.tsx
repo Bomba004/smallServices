@@ -1,7 +1,7 @@
 /**
- * 📝 @/components/BUI/input.tsx
- * Version: 1.0.0
- * lastUpdatedAt:[{ "date": "31/10/2025", "by": ["BomBa"], "comment": "ملف لمكون زر input مع أنماط Tailwind CSS" }]
+ * @file : @/components/BUI/input.tsx
+ * @version : 1.0.0
+ * @lastUpdatedAt : [{ "date": "31/10/2025", "by": ["BomBa"], "comment": "ملف لمكون زر input مع أنماط Tailwind CSS" }]
  */
 
 import React from 'react';
@@ -29,7 +29,7 @@ export const Input: React.FC<InputProps> = ({
       )}
       <input
         className={cn(
-          'w-full px-3 py-2 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent dark:bg-gray-800 dark:border-gray-600 dark:text-white transition-colors',
+          'w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent dark:bg-gray-800 dark:border-gray-600 dark:text-white transition-colors',
           error && 'border-red-500 focus:ring-red-500',
           className
         )}

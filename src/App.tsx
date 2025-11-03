@@ -1,23 +1,26 @@
 /**
- * 📝 @/app.tsx
- * Version: 1.0.0
- * lastUpdatedAt:[{ "date": "31/10/2025", "by": ["BomBa"], "comment": "المكون الرئيسي للتطبيق مع إدارة جهات الاتصال ونماذج الإضافة/التعديل والإعدادات" }]
+ * @file : @/app.tsx
+ * @version : 1.0.0
+ * @lastUpdatedAt : [{ "date": "31/10/2025", "by": ["BomBa"], "comment": "المكون الرئيسي للتطبيق مع إدارة جهات الاتصال ونماذج الإضافة/التعديل والإعدادات" }]
  */
 
-import React, { useState, useEffect } from 'react';
-import { Header } from './components/layout/header';
-import { ContactList } from './components/contacts/contact-list';
-import { ContactForm } from './components/contacts/contact-form';
-import { Modal } from './components/BUI/modal';
-import { Button } from './components/BUI/button';
-import { useContacts } from './hooks/use-contacts';
-import { useLocalization } from './hooks/use-localization';
-import type { Contact } from './types';
-import { Plus, Settings } from 'lucide-react';
-import { toast, Toaster } from 'sonner';
+import {
+  useState, useEffect, 
+  LoaderScreen,
+
+  Contact, useContacts, Header, ContactList, ContactForm, Modal, Button, Plus, Toaster, toast,
+  useTranslation,
+  useSettings,
+
+ } from '@/alias';
+
 
 // المكون الرئيسي للتطبيق
 function App() {
+  //#region 00 - تحميل البيانات الأولي عند بدء التطبيق, مع عرض شاشة التحميل
+    useEffect(() => { loaderProcess( () => {}, t('setting.loadingData' as string), 5000 ); }, []);
+  //#endregion ====-====-====-====-====-====-====-====-====-====-====-====-====-====-====-====-====
+
   const [isAddModalOpen, setIsAddModalOpen] = useState(false);
   const [isSettingsModalOpen, setIsSettingsModalOpen] = useState(false);
   const [editingContact, setEditingContact] = useState<Contact | null>(null);
@@ -32,7 +35,8 @@ function App() {
     softDeleteContact
   } = useContacts();
 
-  const { t } = useLocalization();
+  const { t, i18n } = useTranslation() // Hook الترجمة
+  const { loaderProcess } = useSettings();
 
   // معالجة إضافة جهة اتصال جديدة
   const handleAddContact = async (contactData: any) => {
@@ -116,93 +120,25 @@ function App() {
     return () => document.removeEventListener('keydown', handleKeyDown);
   }, []);
 
+  
   return (
-    <div className="min-h-screen bg-gray-50 dark:bg-gray-900 transition-colors">
+  <>
+    {/* <Toaster position="top-right" richColors /> */} {/* كومبوننت رسائل الاشعارات */}
+    <LoaderScreen /> {/* شاشة التحميل العامة */}
+    <div className="min-h-screen | app">
       {/* الرأس */}
       <Header onSettingsOpen={() => setIsSettingsModalOpen(true)} />
+      <h1>{t('app.title')}</h1>
 
-      {/* المحتوى الرئيسي */}
-      <main className="container mx-auto px-4 py-8">
-        <div className="max-w-7xl mx-auto">
-          {/* شريط العنوان والإجراءات */}
-          <div className="flex justify-between items-center mb-8">
-            <div>
-              <h2 className="text-2xl font-bold text-gray-900 dark:text-white">
-                {t('contactsList' as any)}
-              </h2>
-              <p className="text-gray-600 dark:text-gray-400 mt-1">
-                إدارة جهات الاتصال الخاصة بك بسهولة وأمان
-              </p>
-            </div>
+      <br />
+      <br />
 
-            <Button
-              onClick={() => setIsAddModalOpen(true)}
-              className="flex items-center gap-2"
-            >
-              <Plus className="w-4 h-4" />
-              {t('addContact' as any)}
-            </Button>
-          </div>
+      <button onClick={()=> loaderProcess(()=>{console.log('loader...');}, t('setting.loadingData' as string), 2000)}>
+        {t('setting.startLoading' as string)}
+      </button>
 
-          {/* قائمة جهات الاتصال */}
-          <ContactList
-            contacts={contacts}
-            searchQuery={searchQuery}
-            onSearchChange={setSearchQuery}
-            onEdit={handleEditContact}
-            onDelete={handleDeleteContact}
-            onPermanentDelete={handleDeleteContact}
-          />
-        </div>
-      </main>
-
-      {/* زر الإضافة العائم */}
-      <Button
-        onClick={() => setIsAddModalOpen(true)}
-        className="fixed bottom-6 left-6 w-14 h-14 rounded-full shadow-lg z-40 print:hidden"
-        size="lg"
-      >
-        <Plus className="w-6 h-6" />
-      </Button>
-
-      {/* مودال إضافة/تعديل جهة اتصال */}
-      <Modal
-        isOpen={isAddModalOpen}
-        onClose={handleCloseModal}
-        title={editingContact ? t('editContact' as any) : t('addContact' as any)}
-        size="lg"
-      >
-        <ContactForm
-          contact={editingContact || undefined}
-          onSubmit={editingContact ? handleUpdateContact : handleAddContact}
-          onCancel={handleCloseModal}
-          isLoading={isLoading}
-        />
-      </Modal>
-
-      {/* مودال الإعدادات */}
-      <Modal
-        isOpen={isSettingsModalOpen}
-        onClose={() => setIsSettingsModalOpen(false)}
-        title={t('settings' as any)}
-        size="md"
-      >
-        <div className="space-y-6">
-          <p className="text-gray-600 dark:text-gray-400">
-            إعدادات النظام والثيم واللغة
-          </p>
-          {/* يمكن إضافة المزيد من الإعدادات هنا */}
-        </div>
-      </Modal>
-
-      {/* نظام الإشعارات */}
-      <Toaster 
-        position="top-right"
-        toastOptions={{
-          className: 'dark:bg-gray-800 dark:text-white dark:border-gray-700',
-        }}
-      />
     </div>
+  </>
   );
 }
 

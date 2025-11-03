@@ -7,8 +7,10 @@ npm install
 
 ## [X] -  تثبيت المكتبات المطلوبة:
 ``` bash
-npm install tailwindcss @tailwindcss/forms @tailwindcss/typography autoprefixer postcss lucide-react clsx tailwind-merge @hookform/resolvers zod js-cookie sonner cmdk date-fns uuid @types/uuid
-npm install -D @types/js-cookie
+npm install @tailwindcss/forms@^0.5.0 @tailwindcss/typography@^0.5.0 autoprefixer postcss lucide-react clsx tailwind-merge @hookform/resolvers zod js-cookie sonner cmdk date-fns uuid @types/uuid
+
+npm install -D @types/js-cookie tailwindcss@^3.3.0 postcss@^8.4.0 autoprefixer@^10.4.0
+
 ```
 
 ## [X] - هيكل الملفات:
@@ -71,9 +73,9 @@ touch src/{App.tsx,main.tsx}
 ## [ ] - قم بتكويد الملفات:
 ```
 /**
- * 📝 @/
- * Version: 1.0.0
- * lastUpdatedAt:[{ "date": "31/10/2025", "by": ["BomBa"], "comment": "" }]
+ * @file : @/
+ * @version : 1.0.0
+ * @lastUpdatedAt : [{ "date": "31/10/2025", "by": ["BomBa"], "comment": "" }]
  */
 
 ```

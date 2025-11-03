@@ -1,0 +1,134 @@
+/* ================== إعداد الخطوط ================== */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Noto+Sans+Arabic:wght@300;400;500;600;700&display=swap');
+
+/* تهيئة أساس Tailwind */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ==================================================
+   🎨 نظام الألوان الخاص بالتطبيق (CSS Custom Properties)
+================================================== */
+:root {
+  /* 🧠 قيم تحكم عامة */
+  --ltr: 1;    /* لعكس الاتجاهات تلقائيًا */
+  --shadow: 1; /* لتفعيل الظلال */
+  --radius: 1; /* لتفعيل الحواف المستديرة */
+
+  /* 🟦 إعداد اللون الأساسي (Primary) */
+  --h: 210; --s: 80%; --l: 40%; /* اللون الرئيسي */
+  --flip-l: 0%;  --ISD: -1; /* تستخدم لعكس الأسود والأبيض في الوضع الداكن */
+
+  /* 🎨 توليد الألوان الفرعية */
+  --primary-hsl: var(--h) var(--s) var(--l);
+
+  --primary: hsl(var(--primary-hsl));
+  --secondary: hsl(from var(--primary) 330 s l);
+  --accent: hsl(from var(--primary) 300 s l);
+  --muted: hsl(from var(--primary) 250 s l);
+
+  --success: hsl(from var(--primary) 130 s l);
+  --danger: hsl(from var(--primary) 5 s l);
+  --warning: hsl(from var(--primary) 60 s l);
+  --info: hsl(from var(--primary) 200 s l);
+  --light: hsl(from var(--primary) h s calc((var(--flip-l) - 95% * var(--ISD))));
+  --dark: hsl(from var(--primary) h s calc((var(--flip-l) - 5% * var(--ISD))));
+
+  --gray: hsl(from var(--primary) h 10% 50%);
+  --white: hsl(from var(--primary) h 0% 95%);
+  --black: hsl(from var(--primary) h 0% 5%);
+
+  /* 💬 ألوان إضافية سريعة */
+  --ok: var(--success);
+  --err: var(--danger);
+  --warn: var(--warning);
+  --inf: var(--info);
+
+  /* ⚪ ألوان الواجهة */
+  --bg: var(--light);
+  --title: hsl(from var(--dark) h s calc(l * 1.5));
+  --text: var(--dark);
+  --span: hsl(from var(--dark) h s calc(l / 1.5));
+
+  /* 🧱 ألوان المكونات */
+  --card-bg: hsl(from var(--bg) h s calc(l - 5%));
+  --br: hsl(from var(--bg) h 10% 50%);
+
+  /* ☁️ ظل عام */
+  --shadow-g: 0 0.2em 0.5em hsl(from var(--primary) h s l / 0.2);
+
+  /* 📜 خط عام */
+  --font-family: "Cairo", "Inter", system-ui, -apple-system, sans-serif;
+}
+
+/* دعم الاتجاه العربي */
+[dir="rtl"] { --ltr: -1; }
+
+/* 🌙 الوضع الليلي */
+.dark, [data-theme="dark"] {
+  --flip-l: 100%;
+  --ISD: 1;
+}
+
+
+
+
+/* ==================================================
+   🧱 الطبقات الخاصة بـ Tailwind
+================================================== */
+@layer base {
+  html {
+    font-family: var(--font-family);
+  }
+
+  body {
+    @apply transition-colors duration-200;
+    background-color: var(--bg);
+    color: var(--text);
+  }
+}
+
+@layer components {
+  /* زر عام */
+  .btn {
+    @apply inline-flex items-center justify-center rounded-md font-medium transition-colors focus:outline-none focus:ring-2 focus:ring-offset-2;
+  }
+
+  /* الأزرار حسب اللون */
+  .btn-primary {
+    background-color: var(--primary);
+    color: var(--white);
+  }
+
+  .btn-danger {
+    background-color: var(--danger);
+    color: var(--white);
+  }
+
+  /* حقل إدخال */
+  .input {
+    @apply w-full px-3 py-2 border rounded-md shadow-sm focus:outline-none focus:ring-2;
+    border-color: var(--br);
+    background-color: var(--card-bg);
+    color: var(--text);
+    --tw-ring-color: var(--primary);
+  }
+
+  /* بطاقة */
+  .card {
+    background-color: var(--card-bg);
+    border: 1px solid var(--br);
+    border-radius: 1em;
+    box-shadow: var(--shadow-g);
+  }
+}
+
+/* ==================================================
+   🧭 تخصيص شريط التمرير
+================================================== */
+::-webkit-scrollbar { width: 0.5em; }
+::-webkit-scrollbar-thumb { background: var(--gray); border-radius: 3px; }
+::-webkit-scrollbar-track { background: var(--light); }
+.dark ::-webkit-scrollbar-track { background: var(--dark); }
+::-webkit-scrollbar-thumb:hover { background: var(--dark); }
+.dark ::-webkit-scrollbar-thumb:hover { background: var(--light); }

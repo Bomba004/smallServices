@@ -1,7 +1,7 @@
 /**
- * 📝 @/components/BUI/modal.tsx
- * Version: 1.0.0
- * lastUpdatedAt:[{ "date": "31/10/2025", "by": ["BomBa"], "comment": "ملف لمكون زر modal مع أنماط Tailwind CSS" }]
+ * @file : @/components/BUI/modal.tsx
+ * @version : 1.0.0
+ * @lastUpdatedAt : [{ "date": "31/10/2025", "by": ["BomBa"], "comment": "ملف لمكون زر modal مع أنماط Tailwind CSS" }]
  */
 
 import React from 'react';
@@ -56,7 +56,7 @@ export const Modal: React.FC<ModalProps> = ({
     <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black bg-opacity-50 backdrop-blur-sm">
       <div
         className={cn(
-          'bg-white dark:bg-gray-800 rounded-xl shadow-xl w-full max-h-[90vh] overflow-y-auto',
+          'bg-white dark:bg-gray-800 rounded-md shadow-xl w-full max-h-[90vh] overflow-y-auto',
           sizes[size]
         )}
         onClick={e => e.stopPropagation()}
@@ -68,7 +68,7 @@ export const Modal: React.FC<ModalProps> = ({
           </h2>
           <button
             onClick={onClose}
-            className="p-2 text-gray-400 hover:text-gray-600 dark:hover:text-gray-300 transition-colors rounded-lg hover:bg-gray-100 dark:hover:bg-gray-700"
+            className="p-2 text-gray-400 hover:text-gray-600 dark:hover:text-gray-300 transition-colors rounded-md hover:bg-gray-100 dark:hover:bg-gray-700"
           >
             <X className="w-5 h-5" />
           </button>

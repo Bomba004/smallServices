@@ -1,7 +1,7 @@
 /**
- * 📝 @/lib/utils.ts
- * Version: 1.0.0
- * lastUpdatedAt:[{ "date": "31/10/2025", "by": ["BomBa"], "comment": "استيراد المكتبات والأنواع اللازمة, وتضمين دعم Tailwind CSS" }]
+ * @file : @/lib/utils.ts
+ * @version : 1.0.0
+ * @lastUpdatedAt : [{ "date": "31/10/2025", "by": ["BomBa"], "comment": "استيراد المكتبات والأنواع اللازمة, وتضمين دعم Tailwind CSS" }]
  */
 
 

@@ -1,7 +1,7 @@
 /**
- * 📝 @/lib/validations.ts
- * Version: 1.0.0
- * lastUpdatedAt:[{ "date": "31/10/2025", "by": ["BomBa"], "comment": "ملف التحقق من صحة البيانات, التنسيق، وعمليات مساعدة أخرى" }]
+ * @file : @/lib/validations.ts
+ * @version : 1.0.0
+ * @lastUpdatedAt : [{ "date": "31/10/2025", "by": ["BomBa"], "comment": "ملف التحقق من صحة البيانات, التنسيق، وعمليات مساعدة أخرى" }]
  */
 
 import { COUNTRY_CODES } from './constants';

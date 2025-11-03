@@ -1,7 +1,7 @@
 /**
- * 📝 @/hooks/use-contacts.ts
- * Version: 1.0.0
- * lastUpdatedAt:[{ "date": "31/10/2025", "by": ["BomBa"], "comment": "ملف لإدارة جهات الاتصال باستخدام React Hook" }]
+ * @file : @/hooks/use-contacts.ts
+ * @version : 1.0.0
+ * @lastUpdatedAt : [{ "date": "31/10/2025", "by": ["BomBa"], "comment": "ملف لإدارة جهات الاتصال باستخدام React Hook" }]
  */
 
 import { useState, useEffect } from 'react';
