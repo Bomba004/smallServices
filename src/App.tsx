@@ -9,7 +9,6 @@ import {
   LoaderScreen,
 
   Contact, useContacts, Header, ContactList, ContactForm, Modal, Button, Plus, Toaster, toast,
-  useTranslation,
   useSettings,
 
  } from '@/alias';
@@ -18,7 +17,7 @@ import {
 // المكون الرئيسي للتطبيق
 function App() {
   //#region 00 - تحميل البيانات الأولي عند بدء التطبيق, مع عرض شاشة التحميل
-    useEffect(() => { loaderProcess( () => {}, t('setting.loadingData' as string), 5000 ); }, []);
+    useEffect(() => { loaderProcess(async () => {}, t('setting.loadingData' as string), 5000 ); }, []);
   //#endregion ====-====-====-====-====-====-====-====-====-====-====-====-====-====-====-====-====
 
   const [isAddModalOpen, setIsAddModalOpen] = useState(false);
@@ -35,8 +34,8 @@ function App() {
     softDeleteContact
   } = useContacts();
 
-  const { t, i18n } = useTranslation() // Hook الترجمة
-  const { loaderProcess } = useSettings();
+  // const { t, i18n } = useTranslation() // Hook الترجمة
+  const { t, i18n, loaderProcess } = useSettings();
 
   // معالجة إضافة جهة اتصال جديدة
   const handleAddContact = async (contactData: any) => {
@@ -133,8 +132,8 @@ function App() {
       <br />
       <br />
 
-      <button onClick={()=> loaderProcess(()=>{console.log('loader...');}, t('setting.loadingData' as string), 2000)}>
-        {t('setting.startLoading' as string)}
+      <button onClick={() => loaderProcess(async () => { console.log('loader...'); }, t('loading.loadingData' as string), 2000)}>
+        {t('loading.startLoading' as string)}
       </button>
 
     </div>

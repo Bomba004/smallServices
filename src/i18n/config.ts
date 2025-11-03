@@ -50,7 +50,6 @@ const detectLanguage = (): T_Language => {
   return browserLang as T_Language
 }
 
-
 // ⚙️ خيارات i18n
 const options: InitOptions = {
   resources,

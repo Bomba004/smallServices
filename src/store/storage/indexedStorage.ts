@@ -10,32 +10,21 @@ import { get, set, del } from 'idb-keyval';
 export const indexedStorage = {
   // 🔹 قراءة العنصر من IndexedDB
   async getItem(key: string): Promise<string | null> {
+    // ❗ يجب إرجاع القيمة كما هي (string) دون JSON.stringify
     try {
       const value = await get(key);
-      // ❗ يجب إرجاع القيمة كما هي (string) دون JSON.stringify
       return value ?? null;
-    } catch (err) {
-      console.error('❌ IndexedDB getItem error:', err);
-      return null;
-    }
+    } catch (err) { console.error('❌ IndexedDB getItem error:', err); return null; }
   },
 
   // 🔹 حفظ العنصر في IndexedDB
   async setItem(key: string, value: string): Promise<void> {
-    try {
-      // ❗ redux-persist يُرسل القيمة كسلسلة نصية، لذلك نخزنها كما هي
-      await set(key, value);
-    } catch (err) {
-      console.error('❌ IndexedDB setItem error:', err);
-    }
+    // ❗ redux-persist يُرسل القيمة كسلسلة نصية، لذلك نخزنها كما هي
+    try { await set(key, value); } catch (err) { console.error('❌ IndexedDB setItem error:', err); }
   },
 
   // 🔹 حذف العنصر
   async removeItem(key: string): Promise<void> {
-    try {
-      await del(key);
-    } catch (err) {
-      console.error('❌ IndexedDB removeItem error:', err);
-    }
+    try { await del(key); } catch (err) { console.error('❌ IndexedDB removeItem error:', err); }
   },
 };

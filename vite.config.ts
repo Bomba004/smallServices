@@ -1,28 +1,16 @@
-// ✅ استيراد الأدوات اللازمة من Vite
+// ✅ استيراد الأدوات
 import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react'
 import path from 'path'
-// ⚙️ إعدادات المشروع الأساسية
+
+// ⚙️ إعدادات Vite
 export default defineConfig({
-  // 🧩 تفعيل مكون React
   plugins: [react()],
-  
-  // 🎨 إعدادات CSS و PostCSS
-  css: {
-    postcss: './postcss.config.js', // ملف إعدادات Tailwind و PostCSS
-  },
 
-  // ⚡ تحسين أداء التحزيم
-  optimizeDeps: {
-    include: ['tailwindcss'], // لتسريع تحليل المكتبة
-  },
-
-  // 📁 إعداد المسارات القصيرة (Aliases)
   resolve: {
     alias: {
-      // يمكنك الآن استخدام هذه الأسماء بدل المسارات الطويلة
-      '~': path.resolve(__dirname, './public'), // مجلد الملفات العامة
-      '@': path.resolve(__dirname, './src'), // المجلد الرئيسي للكود
+      '~': path.resolve(__dirname, './public'),
+      '@': path.resolve(__dirname, './src'),
       '@components': path.resolve(__dirname, './src/components'),
       '@pages': path.resolve(__dirname, './src/pages'),
       '@styles': path.resolve(__dirname, './src/styles'),
@@ -33,16 +21,21 @@ export default defineConfig({
     },
   },
 
-  // 🚀 إعداد الخادم المحلي أثناء التطوير
+  // 🚀 إعداد الخادم المحلي
   server: {
-    port: 5173, // المنفذ الافتراضي (يمكن تغييره)
-    open: true, // يفتح المتصفح تلقائيًا عند التشغيل
-    hmr: { overlay: true }, // يعرض الأخطاء داخل المتصفح
-    watch: { ignored: ['**/node_modules/**'], } // ✅ تجاهل التحذيرات القادمة من node_modules
+    port: 5173,
+    open: true,
+    hmr: { overlay: true },
+    watch: { ignored: ['**/node_modules/**'] },
   },
-  // 📦 إعدادات البناء النهائي
+
+  // ⚡ إعدادات البناء (إيقاف الـ source maps)
   build: {
-    sourcemap: false, // ⛔ إيقاف إنشاء ملفات .map في البناء
+    sourcemap: false, // ⛔ إيقاف إنشاء ملفات .map نهائيًا
   },
-  
+
+  // ⚙️ إعدادات التطوير — لإخفاء التحذيرات الخاصة بالـ source map
+  esbuild: {
+    logOverride: { 'this-is-undefined-in-esm': 'silent' },
+  },
 })

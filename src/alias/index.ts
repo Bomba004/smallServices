@@ -9,7 +9,10 @@
 import '@/main.css';
 
 // تصدير React و ReactDOM
-export { default as React, StrictMode, useState, useEffect, } from 'react';
+export { default as React,
+  useState, useEffect, useCallback,
+  StrictMode,
+  } from 'react';
 export * as ReactDOM from 'react-dom/client';
 
 // تصدير دوال وأدوات مساعدة {Hooks}
@@ -22,7 +25,7 @@ export { useSettings } from '@/hooks/use-settings';
 // تصدير مكتبات إدارة الحالة (Redux)
 export type { RootState, AppDispatch } from '@/store'
 export { Provider, useDispatch, useSelector } from 'react-redux'; // Hooks من React-Redux, لتسهيل الوصول إلى المخزن (store) في المكونات
-export { configureStore , createSlice, type PayloadAction } from "@reduxjs/toolkit";
+export { configureStore, createSlice, type PayloadAction } from "@reduxjs/toolkit";
 export { persistStore, persistReducer } from 'redux-persist';
 export { store } from '@/store'
 export * from '@/store/slices/loaderSlice';   // Actions من Slice الإعدادات

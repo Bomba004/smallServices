@@ -1,5 +1,6 @@
 export default {
-  "setting": {
+  "loading": {
+    "pleaseWait": "يرجى الانتظار...",
     "loading": "جاري التحميل",
     "startLoading": "بدء التحميل",
     "loadingData": "جارٍ تحميل البيانات... يرجى الانتظار. ⏳",

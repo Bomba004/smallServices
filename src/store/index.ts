@@ -1,51 +1,100 @@
 /**
  * @file : src/store/index.ts
- * @version : 1.0.0
- * @lastUpdatedAt : [{ "date": "31/10/2025", "by": ["BomBa"], "comment": "إعداد مخزن Redux مع التخزين الدائم للإعدادات والمصادقة" }]
+ * @version : 1.1.0
+ * @lastUpdatedAt : [{ "date": "31/10/2025", "by": ["BomBa"], "comment": "إعداد مخزن Redux مع التخزين الدائم باستخدام Cookies" }]
  */
-/* 
-``` bash
-// يفضل عند استخدام vite استخدم اصدار "vite": "^5.4.0" اكثر استقرارا مع هذه المكتبات
-npm cache clean --force
-rm -rf node_modules package-lock.json
-npm install react-redux @reduxjs/toolkit redux-persist js-cookie --legacy-peer-deps
-```
-- استخدم Hook ذكي لتسهيل الاستخدام في الواجهة الأمامية.
-  📁 src/hooks/use-settings.ts
-*/
+
+import Cookies from 'js-cookie';
+import { 
+  persistStore, 
+  persistReducer,
+  FLUSH,
+  REHYDRATE,
+  PAUSE,
+  PERSIST,
+  PURGE,
+  REGISTER
+} from 'redux-persist';
+import {
+  configureStore,
+} from '@/alias';
 
 
-import { configureStore, persistReducer, persistStore } from '@/alias';
-import { indexedStorage } from './storage/indexedStorage';
-// 1) استيراد Slices (المخفضات):
+
+// #region خطوات إعداد المخزن (Slices) مع التخزين الدائم: Cookies:-====-====-====-==== //
+  // 1) 🍪 إنشاء وحدة تخزين مخصصة تعمل مع Cookies
+  const createCookieStorage = () => {
+    const isClient = typeof window !== 'undefined';
+    
+    return {
+      getItem: (key: string): Promise<string | null> => {
+        if (!isClient) return Promise.resolve(null);
+        try {
+          const value = Cookies.get(key);
+          return Promise.resolve(value || null);
+        } catch (error) {
+          console.error(`❌ Failed to get ${key} from cookies:`, error);
+          return Promise.resolve(null);
+        }
+      },
+      
+      setItem: (key: string, value: string): Promise<void> => {
+        if (!isClient) return Promise.resolve();
+        try {
+          Cookies.set(key, value, { 
+            expires: 30,
+            secure: process.env.NODE_ENV === 'production',
+            sameSite: 'strict',
+            path: '/'
+          });
+          return Promise.resolve();
+        } catch (error) {
+          console.error(`❌ Failed to set ${key} in cookies:`, error);
+          return Promise.resolve();
+        }
+      },
+      
+      removeItem: (key: string): Promise<void> => {
+        if (!isClient) return Promise.resolve();
+        try {
+          Cookies.remove(key, { path: '/' });
+          return Promise.resolve();
+        } catch (error) {
+          console.error(`❌ Failed to remove ${key} from cookies:`, error);
+          return Promise.resolve();
+        }
+      },
+    };
+  };
+
+  // 2) ⚙️ إعدادات التخزين الدائم لـ Slice الإعدادات (settings Slice)
+  const settingsPersistConfig = { key: 'settings', storage: createCookieStorage(), whitelist: ['theme', 'language', 'sidebarCollapsed'], };
+  
+  // 3) إنشاء المخفضات الدائمة (settings persisted reducers)
+  const persistedSettingsReducer = persistReducer(settingsPersistConfig, settingsReducer);
+// #endregion ====-====-====-====-====-====-====-====-====-====-====-====-====-====-==== //
+
+// 4) استيراد Slices
 import loaderReducer from './slices/loaderSlice';
 import settingsReducer from './slices/settingsSlice';
 
-// 2)
-// تهيئة التخزين الدائم للإعدادات (Settings Slice)
-const settingsPersistConfig = { key: 'settings', storage: indexedStorage, whitelist: ['theme', 'language'], };
-// تهيئة التخزين الدائم للمصادقة (Auth Slice)
-// const authPersistConfig = { key: 'auth', storage: indexedStorage, whitelist: ['user', 'token'], };
-
-// 3)
-// إنشاء المخفضات الدائمة (settings)
-const persistedSettingsReducer = persistReducer(settingsPersistConfig, settingsReducer);
-// إنشاء المخفضات الدائمة (auth)
-// const persistedAuthReducer = persistReducer(authPersistConfig, auth);
-
-// 4) تكوين المخزن (Store)
+// 5) تكوين المخزن
 export const store = configureStore({
   reducer: {
     loader: loaderReducer,
     settings: persistedSettingsReducer,
-    // auth: persistedAuthReducer,
   },
   middleware: (getDefaultMiddleware) =>
-    getDefaultMiddleware({ serializableCheck: false, }),
+    getDefaultMiddleware({
+      serializableCheck: {
+        ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
+      },
+    }),
 });
 
-// 5) تهيئة المخزن الدائم (Persistor)
+// 6) تهيئة المخزن الدائم
 export const persistor = persistStore(store);
 
+// 7) الأنواع
 export type RootState = ReturnType<typeof store.getState>;
 export type AppDispatch = typeof store.dispatch;

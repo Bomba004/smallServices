@@ -1,70 +1,86 @@
 /**
  * @file : src/store/slices/settingsSlice.ts
- * @version : 1.0.0
- * @lastUpdatedAt : [{ "date": "31/10/2025", "by": ["BomBa"], "comment": "تعريف Slice الإعدادات لإدارة الثيم، اللغة، وحالة القائمة الجانبية باستخدام Redux Toolkit" }]
+ * @version : 1.1.0
+ * @lastUpdatedAt : [{ "date": "31/10/2025", "by": ["BomBa"], "comment": "تحسين إدارة الثيم واللغة مع معالجة أفضل للـ DOM" }]
  */
 
-// 🧩 الاستيرادات
-import { 
+import {
   createSlice, PayloadAction,
   changeLanguage,
-  
-  type T_Theme, 
-  type T_Language,
- } from '@/alias';
 
-//#region 1) Type: 📦 الواجهة (interface) التي تمثل الحالة الخاصة بالإعدادات
+  type T_Theme,
+  type T_Language
+} from '@/alias';
+
+// 1) 🎯 الواجهة
 export interface SettingsState {
   theme: T_Theme;
   language: T_Language;
   sidebarCollapsed: boolean;
 }
-//#endregion
 
-//#region 2) Data: 🧱 الحالة الابتدائية (Initial State)
-export const initialState: SettingsState = {
-  theme: document.documentElement.classList.contains('dark') ? 'dark' : 'light', // الثيم الافتراضي
-  language: 'en', // اللغة الافتراضية
-  sidebarCollapsed: false, // حالة الطي الجانبي
+// 2) 🏗️ الحالة الابتدائية للثيم
+const getInitialTheme = (): T_Theme => {
+  // التحقق من النظام لدي المستخدم أولاً, ثم من السمات المحفوظة في الـ DOM
+  if (typeof window !== 'undefined') {
+    const systemPrefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+    const savedTheme = document.documentElement.getAttribute('data-theme') as T_Theme;
+    
+    return savedTheme || (systemPrefersDark ? 'dark' : 'light');
+  }
+  return 'light';
 };
-//#endregion
+// الحالة الابتدائية
+export const initialState: SettingsState = {
+  theme: getInitialTheme(),
+  language: 'en',
+  sidebarCollapsed: false,
+};
 
-//#region 3) 🧠 تعريف Slice الإعدادات + Method|Function: 
+// 3) 🎨 تطبيق الثيم على الـ DOM
+const applyThemeToDOM = (theme: T_Theme) => {
+  if (typeof document === 'undefined') return;
+  
+  const html = document.documentElement;
+  
+  // إزالة السمات السابقة
+  html.classList.remove('light', 'dark');
+  html.removeAttribute('data-theme');
+  
+  // إضافة السمات الجديدة
+  html.classList.add(theme);
+  html.setAttribute('data-theme', theme);
+  html.style.colorScheme = theme;
+};
+
+// 4) 🧠 الـ Slice
 const settingsSlice = createSlice({
-  name: 'settings', // اسم الـ Slice في مخزن Redux
+  name: 'settings',
   initialState,
   reducers: {
-    //#region 🎨 تغيير الثيم
-    // toggleTheme(state) { state.theme = state.theme === 'light' ? 'dark' : 'light'; document.documentElement.classList.toggle('dark', state.theme === 'dark'); },
-    setTheme(state, action: PayloadAction<T_Theme>) { state.theme = action.payload;
-      document.documentElement.setAttribute('data-theme', state.theme);
-      document.documentElement.classList.toggle('dark', state.theme === 'dark');
-      document.documentElement.style.colorScheme = state.theme;
-    },
-    //#endregion
-
-    //#region 🌐 تغيير اللغة
-    setLanguage(state, action: PayloadAction<T_Language>) {
-    state.language = action.payload; changeLanguage(action.payload); },
-    // toggleLanguage: (state) => { state.language = state.language === 'ar' ? 'en' : 'ar'; changeLanguage(state.language); },
-    //#endregion
-
-    //#region 📏 تغيير حالة القائمة الجانبية
-    toggleSidebar(state) { state.sidebarCollapsed = !state.sidebarCollapsed; },
-    setSidebar(state, action: PayloadAction<boolean>) { state.sidebarCollapsed = action.payload; },
-    //#endregion
+    // تغيير الثيم
+    setTheme: (state, action: PayloadAction<T_Theme>) => { state.theme = action.payload; applyThemeToDOM(action.payload); },
+    
+    // تغيير اللغة
+    setLanguage: (state, action: PayloadAction<T_Language>) => { state.language = action.payload; changeLanguage(action.payload); },
+    
+    // تبديل حالة القائمة الجانبية
+    toggleSidebar: (state) => { state.sidebarCollapsed = !state.sidebarCollapsed; },
+    
+    // تعيين حالة القائمة الجانبية
+    setSidebar: (state, action: PayloadAction<boolean>) => { state.sidebarCollapsed = action.payload; },
+    
+    // 🔄 إعادة تعيين جميع الإعدادات, rest data
+    resetSettings: (state) => { state.theme = getInitialTheme(); state.language = 'en'; state.sidebarCollapsed = false; applyThemeToDOM(state.theme); },
   },
 });
-//#endregion
 
-//#region 4) 📤 تصدير الـ Reducer (لاستخدامه في الـ store الرئيسي)
+// 5) 📤 التصدير
 export default settingsSlice.reducer;
-//#endregion
-
-//#region 5) 🚀 تصدير الدوال (Actions) لاستخدامها في الواجهة الأمامية
 export const {
-  setTheme, /* toggleTheme, */
-  setLanguage, /* toggleLanguage, */
-  setSidebar, toggleSidebar,
+  setTheme,
+  setLanguage,
+  toggleSidebar,
+  setSidebar,
+  resetSettings,
 } = settingsSlice.actions;
-//#endregion

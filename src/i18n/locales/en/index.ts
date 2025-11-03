@@ -1,5 +1,6 @@
 export default {
-  "setting": {
+  "loading": {
+    "pleaseWait": "Please wait...",
     "loading": "Loading",
     "startLoading": "Start Loading",
     "loadingData": "Loading data... Please wait. ⏳",
