@@ -4,10 +4,15 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
-    "dev": "vite",
-    "build": "tsc -b && vite build",
     "lint": "eslint .",
-    "preview": "vite preview"
+    "dev": "vite --force",
+    "dev:clean": "rm -rf node_modules/.vite && vite --force",
+    "dev:no-sourcemap": "vite --no-sourcemap",
+    "build": "tsc && vite build",
+    "build:clean": "rm -rf dist && tsc && vite build",
+    "build:analyze": "tsc && vite build --mode analyze",
+    "preview": "vite preview --port 4173 --host",
+    "preview:clean": "rm -rf dist && npm run build && vite preview"
   },
   "dependencies": {
     "@hookform/resolvers": "^5.2.2",

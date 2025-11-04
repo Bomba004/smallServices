@@ -12,6 +12,11 @@
 
     <script>
       // ⚡️ سكربت تحميل مسبق لتطبيق الثيم واللغة قبل تحميل React
+        // تعطيل React DevTools في بيئة Codespaces
+        // if (window.location.hostname.includes('github.dev') || 
+        //     window.location.hostname.includes('app.github.dev')) {
+        //   window.__REACT_DEVTOOLS_GLOBAL_HOOK__ = { isDisabled: true };
+        // }
       (() => {
         try {
           // 🧠 استخراج الكوكيز المحفوظ بواسطة redux-persist
