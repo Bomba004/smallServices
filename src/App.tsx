@@ -10,6 +10,7 @@ import {
 
   Contact, useContacts, Header, ContactList, ContactForm, Modal, Button, Plus, Toaster, toast,
   useSettings,
+  TEST,
 
  } from '@/alias';
 
@@ -17,7 +18,7 @@ import {
 // المكون الرئيسي للتطبيق
 function App() {
   //#region 00 - تحميل البيانات الأولي عند بدء التطبيق, مع عرض شاشة التحميل
-    useEffect(() => { loaderProcess(async () => {}, t('setting.loadingData' as string), 5000 ); }, []);
+    useEffect(() => { loaderProcess(async () => {}, t('setting.loadingData' as string), 300 ); }, []);
   //#endregion ====-====-====-====-====-====-====-====-====-====-====-====-====-====-====-====-====
 
   const [isAddModalOpen, setIsAddModalOpen] = useState(false);
@@ -130,6 +131,7 @@ function App() {
       <h1>{t('app.title')}</h1>
 
       <br />
+      <TEST />
       <br />
 
       <button onClick={() => loaderProcess(async () => { console.log('loader...'); }, t('loading.loadingData' as string), 2000)}>

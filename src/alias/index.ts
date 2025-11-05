@@ -10,8 +10,10 @@ import '@/main.css';
 
 // تصدير React و ReactDOM
 export { default as React,
+  JSX, lazy,
   useState, useEffect, useCallback,
   StrictMode,
+
   } from 'react';
 export * as ReactDOM from 'react-dom/client';
 
@@ -27,7 +29,7 @@ export type { RootState, AppDispatch } from '@/store'
 export { Provider, useDispatch, useSelector } from 'react-redux'; // Hooks من React-Redux, لتسهيل الوصول إلى المخزن (store) في المكونات
 export { configureStore, createSlice, type PayloadAction } from "@reduxjs/toolkit";
 export { persistStore, persistReducer } from 'redux-persist';
-export { store } from '@/store'
+export * from '@/store'
 export * from '@/store/slices/loaderSlice';   // Actions من Slice الإعدادات
 export * from '@/store/slices/settingsSlice'; // Actions من Slice الإعدادات
 
@@ -41,6 +43,7 @@ export { Button } from '@/components/BUI/button';
 
 // تصدير المكون الرئيسي للتطبيق
 export { default as App } from '@/App';
+export { default as TEST } from '@/TEST';
 
 // استيراد وتصدير i18n وأدوات الترجمة (react-i18next)
 export { useTranslation } from 'react-i18next';

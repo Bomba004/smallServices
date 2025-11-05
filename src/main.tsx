@@ -7,23 +7,21 @@
 import {
   StrictMode, createRoot,
   Provider,
-  store,
+  store, persistor,
 
   App,
   LoaderScreen,
  } from '@/alias';
 import { PersistGate } from 'redux-persist/integration/react';
-import { persistor } from './store';
 
 // نقطة تشغيل التطبيق
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
     <Provider store={store}>
-  <PersistGate loading={<LoaderScreen />} persistor={persistor}>
-    <App />
-  </PersistGate>
-</Provider>
+      <PersistGate loading={<LoaderScreen />} persistor={persistor}>
+        <App />
+      </PersistGate>
+    </Provider>
   </StrictMode>,
 );
-
 
