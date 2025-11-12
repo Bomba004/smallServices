@@ -1,81 +1,168 @@
 /**
  * @file : src/store/slices/settingsSlice.ts
- * @version : 1.1.0
- * @lastUpdatedAt : [{ "date": "31/10/2025", "by": ["BomBa"], "comment": "تحسين إدارة الثيم واللغة مع معالجة أفضل للـ DOM" }]
+ * @version : 1.2.0
+ * @lastUpdatedAt : [{ "date": "12/11/2025", "by": ["BomBa"], "comment": "تحسين منطق التهيئة وإدارة اللغة والثيم من URL أو الكوكيز" }]
  */
 
 import {
   createSlice, PayloadAction,
   changeLanguage,
-
   type T_Theme,
   type T_Language
 } from '@/alias';
 
-// 1) 🎯 الواجهة
+// 1️⃣ الواجهة
 export interface SettingsState {
   theme: T_Theme;
   language: T_Language;
   sidebarCollapsed: boolean;
 }
 
-// 2) 🏗️ الحالة الابتدائية للثيم
+// 2️⃣ أدوات مساعدة
+const supportedLangs: T_Language[] = ['ar', 'en'];
+
+/**
+ * 🌓 تحديد الثيم الافتراضي
+ * - التحقق من النظام أولاً
+ * - ثم من السمة المحفوظة في الـ DOM (مثل SSR أو تحميل مسبق)
+ */
 const getInitialTheme = (): T_Theme => {
-  // التحقق من النظام لدي المستخدم أولاً, ثم من السمات المحفوظة في الـ DOM
   if (typeof window !== 'undefined') {
-    const systemPrefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-    const savedTheme = document.documentElement.getAttribute('data-theme') as T_Theme;
-    
-    return savedTheme || (systemPrefersDark ? 'dark' : 'light');
+    const savedTheme = document.documentElement.getAttribute('data-theme') as T_Theme | null;
+    if (savedTheme) return savedTheme;
+
+    const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+    return prefersDark ? 'dark' : 'light';
   }
   return 'light';
 };
-// الحالة الابتدائية
+
+/**
+ * 🌍 تحديد اللغة والثيم من:
+ *  1. URL أولاً
+ *  2. ثم الكوكيز (settings)
+ *  3. ثم القيم الافتراضية
+ */
+const getInitial = (): { theme: T_Theme; lang: T_Language } => {
+  let theme: T_Theme = 'light';
+  let lang: T_Language = 'en';
+
+  try {
+    // 🧭 استخراج اللغة من الـ URL مثل /ar أو /en
+    const pathLang = window?.location?.pathname?.split('/')?.[1] as T_Language;
+    const hasLangInURL = supportedLangs.includes(pathLang);
+
+    // 🍪 استخراج إعدادات المستخدم من الكوكيز (redux-persist)
+    const match = document.cookie.match(/settings=([^;]+)/);
+    const cookieSettings = match ? JSON.parse(decodeURIComponent(match[1])) : null;
+
+    // 🎯 تحديد اللغة
+    if (hasLangInURL) lang = pathLang;
+    else if (cookieSettings?.language) lang = cookieSettings.language.replace(/"/g, '');
+
+    // 🎨 تحديد الثيم
+    if (cookieSettings?.theme) theme = cookieSettings.theme.replace(/"/g, '');
+    else theme = getInitialTheme();
+
+    // ⚡ تطبيق القيم على الـ DOM فوراً لتجنب وميض الواجهة
+    document.documentElement.setAttribute('data-theme', theme);
+    document.documentElement.style.colorScheme = theme;
+    document.documentElement.lang = lang;
+    document.documentElement.dir = lang === 'ar' ? 'rtl' : 'ltr';
+  } catch (err) {
+    console.warn('⚠️ Preload settings failed:', err);
+  }
+
+  return { theme, lang };
+};
+
+// 3️⃣ الحالة الابتدائية
+const { theme: initialTheme, lang: initialLang } = getInitial();
 export const initialState: SettingsState = {
-  theme: getInitialTheme(),
-  language: 'en',
+  theme: initialTheme,
+  language: initialLang,
   sidebarCollapsed: false,
 };
 
-// 3) 🎨 تطبيق الثيم على الـ DOM
+// 4️⃣ تطبيق الثيم على الـ DOM
 const applyThemeToDOM = (theme: T_Theme) => {
   if (typeof document === 'undefined') return;
-  
+
   const html = document.documentElement;
-  
-  // إزالة السمات السابقة
   html.classList.remove('light', 'dark');
-  html.removeAttribute('data-theme');
-  
-  // إضافة السمات الجديدة
   html.classList.add(theme);
   html.setAttribute('data-theme', theme);
   html.style.colorScheme = theme;
 };
 
-// 4) 🧠 الـ Slice
+// 5️⃣ الـ Slice
 const settingsSlice = createSlice({
   name: 'settings',
   initialState,
   reducers: {
-    // تغيير الثيم
-    setTheme: (state, action: PayloadAction<T_Theme>) => { state.theme = action.payload; applyThemeToDOM(action.payload); },
-    
-    // تغيير اللغة
-    setLanguage: (state, action: PayloadAction<T_Language>) => { state.language = action.payload; changeLanguage(action.payload); },
-    
-    // تبديل حالة القائمة الجانبية
-    toggleSidebar: (state) => { state.sidebarCollapsed = !state.sidebarCollapsed; },
-    
-    // تعيين حالة القائمة الجانبية
-    setSidebar: (state, action: PayloadAction<boolean>) => { state.sidebarCollapsed = action.payload; },
-    
-    // 🔄 إعادة تعيين جميع الإعدادات, rest data
-    resetSettings: (state) => { state.theme = getInitialTheme(); state.language = 'en'; state.sidebarCollapsed = false; applyThemeToDOM(state.theme); },
+    // 🎨 تغيير الثيم
+    setTheme: (state, action: PayloadAction<T_Theme>) => {
+      state.theme = action.payload;
+      applyThemeToDOM(action.payload);
+    },
+
+    // 🌐 تغيير اللغة وتحديث الرابط (URL)
+    setLanguage: (state, action: PayloadAction<T_Language>) => {
+      const newLang = action.payload;
+      state.language = newLang;
+
+      // 🈶 تطبيق اللغة على الـ DOM
+      document.documentElement.lang = newLang;
+      document.documentElement.dir = newLang === 'ar' ? 'rtl' : 'ltr';
+
+      // 🌍 تحديث اللغة في i18n أو النظام الخارجي
+      changeLanguage(newLang);
+
+      // 🔗 تحديث الرابط الحالي ليعكس اللغة الجديدة بدون إعادة تحميل الصفحة
+      if (typeof window !== 'undefined') {
+        const pathParts = window.location.pathname.split('/').filter(Boolean); // إزالة الفراغات
+        const supportedLangs = ['ar', 'en', 'fr'] as const;
+
+        // إذا كان أول جزء لغة بالفعل → استبدله
+        if (supportedLangs.includes(pathParts[0] as T_Language)) {
+          pathParts[0] = newLang;
+        } else {
+          // إذا لم يكن، أضف اللغة كبداية للمسار
+          pathParts.unshift(newLang);
+        }
+
+        const newPath = '/' + pathParts.join('/');
+        const newUrl = `${window.location.origin}${newPath}${window.location.search}${window.location.hash}`;
+
+        // استبدال الحالة الحالية بدون إعادة تحميل الصفحة
+        window.history.replaceState({}, '', newUrl);
+      }
+    },
+
+
+    // 📁 تبديل القائمة الجانبية
+    toggleSidebar: (state) => {
+      state.sidebarCollapsed = !state.sidebarCollapsed;
+    },
+
+    // 📁 تعيين حالة القائمة الجانبية
+    setSidebar: (state, action: PayloadAction<boolean>) => {
+      state.sidebarCollapsed = action.payload;
+    },
+
+    // 🔄 إعادة تعيين الإعدادات
+    resetSettings: (state) => {
+      state.theme = getInitialTheme();
+      state.language = 'en';
+      state.sidebarCollapsed = false;
+      applyThemeToDOM(state.theme);
+      document.documentElement.lang = 'en';
+      document.documentElement.dir = 'ltr';
+    },
   },
 });
 
-// 5) 📤 التصدير
+// 6️⃣ التصدير
 export default settingsSlice.reducer;
 export const {
   setTheme,

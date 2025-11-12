@@ -7,8 +7,8 @@
 
   // ✅ المسارات: تأكد أن هذا هو المكان الصحيح لملفات JSON مثل en/translation.json
   "i18n-ally.localesPaths": [
-    "src/i18n/locales",
-    "src/i18n"
+    "src/i18n",
+    "src/i18n/locales"
   ],
 
   // ✅ التأكد من أن الإطار المستخدم هو React + i18next

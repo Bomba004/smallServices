@@ -19,7 +19,7 @@ import {
 // المكون الرئيسي للتطبيق
 function App() {
   //#region 00 - تحميل البيانات الأولي عند بدء التطبيق, مع عرض شاشة التحميل
-    useEffect(() => { loaderProcess(async () => {}, t('setting.loadingData' as string),  _testLoading || 300 ); }, []);
+    useEffect(() => { loaderProcess(async () => {}, t('loading.loadingData' as string),  _testLoading || 300 ); }, []);
   //#endregion ====-====-====-====-====-====-====-====-====-====-====-====-====-====-====-====-====
 
   const [isAddModalOpen, setIsAddModalOpen] = useState(false);

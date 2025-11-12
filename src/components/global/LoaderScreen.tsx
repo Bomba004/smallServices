@@ -28,7 +28,7 @@ export const LoaderScreen: React.FC<LoaderScreenProps> = ({ className }) => {
       className={`loader-screen ${className || ''}`}
       role="alert"
       aria-live="assertive"
-      aria-label={message || t('setting.loading' as string)}
+      aria-label={message || t('loading.loading' as string)}
     >
       <div className="loader-screen__backdrop" />
       
@@ -37,7 +37,7 @@ export const LoaderScreen: React.FC<LoaderScreenProps> = ({ className }) => {
           <div 
             className="loader-screen__spinner"
             role="progressbar"
-            aria-valuetext={t('setting.loading' as string)}
+            aria-valuetext={t('loading.loading' as string)}
           />
           <div className="loader-screen__spinner-overlay" />
         </div>
