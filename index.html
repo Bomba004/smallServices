@@ -11,7 +11,7 @@
 
 
     <script>
-      // الهدف: تطبيق الثيم واللغة المحفوظين في الكوكيز قبل تحميل تطبيق React لتجنب وميض الثيم الافتراضي
+      // الهدف: تطبيق الثيم واللغة المحفوظين في الكوكيز أو المستخرجة من URL قبل تحميل تطبيق React لتجنب وميض الثيم الافتراضي
       (() => {
         try {
           // 🧠 استخراج الكوكيز المحفوظ بواسطة redux-persist
@@ -20,25 +20,34 @@
           let theme = 'light';
           let lang = 'en';
 
-          if (match) {
-            // الكوكيز يحتوي على JSON مضغوط
+          // 🌍 محاولة تحديد اللغة أولاً من شريط العنوان (URL)
+          const pathLang = window.location.pathname.split('/')[1]; // يأخذ أول جزء بعد "/"
+          const supportedLangs = ['ar', 'en', 'fr']; // أضف اللغات المدعومة هنا
+
+          if (supportedLangs.includes(pathLang)) {
+            lang = pathLang;
+          } else if (match) {
+            // إذا لم يتم تحديد اللغة من URL، استخدم الكوكيز
             const settings = JSON.parse(decodeURIComponent(match[1]));
-            // console.log('settings: ', settings);
-            // 🔧 معالجة القيم (قد تحتوي على علامات تنصيص)
             theme = settings?.theme?.replace(/"/g, '') || 'light';
             lang = settings?.language?.replace(/"/g, '') || 'en';
+          } else {
+            // لا لغة في الرابط ولا كوكيز
+            lang = 'en';
+            theme = 'light';
           }
 
           // 🌙 تطبيق الثيم فوراً
           document.documentElement.setAttribute('data-theme', theme);
-          // document.documentElement.classList.add(theme === 'dark' ? 'dark' : 'light');
           document.documentElement.style.colorScheme = theme;
 
           // 🈶 تعيين اللغة على مستوى الـ HTML لتجنب وميض النصوص
-          document.documentElement.lang = lang
-          document.documentElement.dir = lang === 'ar' ? 'rtl' : 'ltr'
+          document.documentElement.lang = lang;
+          document.documentElement.dir = lang === 'ar' ? 'rtl' : 'ltr';
 
-        } catch (err) { console.warn('Preload settings failed:', err); }
+        } catch (err) {
+          console.warn('Preload settings failed:', err);
+        }
       })();
     </script>
     <script type="module" src="/src/main.tsx"></script>

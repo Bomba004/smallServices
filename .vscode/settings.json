@@ -1,0 +1,31 @@
+{
+  // ✅ تجاهل الكلمات التي تبدأ بـ "ال"
+  "i18n-ally.extract.ignored": ["ال"],
+
+  // ✅ أسلوب المفاتيح متداخل (nested)
+  "i18n-ally.keystyle": "nested",
+
+  // ✅ المسارات: تأكد أن هذا هو المكان الصحيح لملفات JSON مثل en/translation.json
+  "i18n-ally.localesPaths": [
+    "src/i18n/locales",
+    "src/i18n"
+  ],
+
+  // ✅ التأكد من أن الإطار المستخدم هو React + i18next
+  "i18n-ally.enabledFrameworks": ["react", "i18next"],
+
+  // ✅ أنواع الملفات التي تدعم الاستخراج
+  "i18n-ally.languageIds": [
+    "javascript",
+    "typescript",
+    "javascriptreact",
+    "typescriptreact"
+  ],
+
+  // ✅ تفعيل الـ namespaces
+  "i18n-ally.namespace": true,
+
+  // ✅ اسم namespace الافتراضي الذي تستخدمه في ملفاتك (translation.json)
+  "i18n-ally.defaultNamespace": "translation.js",
+  "i18n-ally.sourceLanguage": "en"
+}

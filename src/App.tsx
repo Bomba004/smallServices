@@ -12,13 +12,14 @@ import {
   useSettings,
   TEST,
 
- } from '@/alias';
+  } from '@/alias';
 
+  const _testLoading = 5000; // محاكاة وقت تحميل البيانات بالمللي ثانية
 
 // المكون الرئيسي للتطبيق
 function App() {
   //#region 00 - تحميل البيانات الأولي عند بدء التطبيق, مع عرض شاشة التحميل
-    useEffect(() => { loaderProcess(async () => {}, t('setting.loadingData' as string), 300 ); }, []);
+    useEffect(() => { loaderProcess(async () => {}, t('setting.loadingData' as string),  _testLoading || 300 ); }, []);
   //#endregion ====-====-====-====-====-====-====-====-====-====-====-====-====-====-====-====-====
 
   const [isAddModalOpen, setIsAddModalOpen] = useState(false);
@@ -128,6 +129,7 @@ function App() {
     <div className="min-h-screen | app">
       {/* الرأس */}
       <Header onSettingsOpen={() => setIsSettingsModalOpen(true)} />
+      <h1>{t('loading.loadingData' as string)}</h1>
       <h1>{t('app.title')}</h1>
 
       <br />
