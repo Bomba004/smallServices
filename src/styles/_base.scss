@@ -1,0 +1,87 @@
+// * 
+// * 📁 src/styles/_base.scss
+// * @description: الملف التأسيسي في المشروع.
+// * @lastUpdatedAt:[{ "date": "2025-10-04", "by": ["BomBa"], "comment": "كتابة الكود الأساسي للملف." }]
+// * 
+
+// @use './_utils' as u;                 // الأدوات المساعدة أولاً
+@use './helpers' as h;                 // الأدوات المساعدة أولاً
+@use './lib/myTailwind' as t;        // مكتبة من صناعتي الخاصة لأنماط شبيهة بمكتبة التايلويند
+
+
+//#region /* base */
+
+$bg: h.$bg;
+$tt: h.$tt;
+$font-family: h.$font-family;
+
+  // Bast Normalize:
+  * {
+    margin: 0; padding: 0; box-sizing:border-box;
+    border-color: hsla(var(--color-black), 0);
+    // outline: none;
+    outline-color: inherit;
+  }
+  *:not(input[text], input[number], input[email], input[password]) { user-select: none; }
+  *::selection { background: var(--primary); text-shadow: none; }
+  * input {
+    -webkit-text-fill-color: var(--black);
+      /* !important */
+    ;
+  }
+
+  html, body{ overflow: hidden; @extend .BScrollbar-000 }
+  i { font-style: normal; }
+
+
+  body{
+    margin-top: env(safe-area-inset-top);
+    min-width: h.em(320);
+    min-height: 100dvh;
+
+    background: $bg;
+    color: $tt;
+    fill: $tt;
+    
+    -webkit-font-smoothing:antialiased;
+    -moz-osx-font-smoothing:grayscale;
+    // fonts:
+    font-family: $font-family;
+    font-size: 1rem;
+    // font-size: 10px;
+    // @include md { &{ font-size: 12px; } }
+    // @include lg { &{ font-size: 14px; } }
+    // @include xl { &{ font-size: 16px; } }
+
+    // flex-col:
+    justify-content: center;
+    align-items: flex-start;
+  }
+
+  #root, .root,
+  #app, .app {
+    // width: 100dvw;
+    height: 100dvh;
+    @extend .flex-col;
+
+    overflow: auto;
+    // overflow-y: auto;
+  }
+  
+  
+  /* منع المتصفح من تغيير خلفية الحقل عند الإكمال التلقائي */
+  input:-webkit-autofill,
+  input:-webkit-autofill:hover,
+  input:-webkit-autofill:focus,
+  input:-webkit-autofill:active {
+    -webkit-text-fill-color: inherit !important;
+    /* تغيير لون النص إلى أحمر */
+    -webkit-box-shadow: 0 0 0 h.rem(1000) transparent inset !important;
+    /* إزالة الخلفية */
+    // transition: background-color 5000s ease-in-out 0s !important; /* منع التغيير التلقائي للخلفية */
+    @include h.Transition((background-color, 5000s, ease-in-out, 0s));
+  }
+
+  //#endregion
+  
+  *{ @extend .BScrollbar-000 }

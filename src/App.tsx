@@ -136,7 +136,7 @@ function App() {
       <TEST />
       <br />
 
-      <button onClick={() => loaderProcess(async () => { console.log('loader...'); }, t('loading.loadingData' as string), 2000)}>
+      <button onClick={() => loaderProcess(async () => { console.log('loader...'); }, t('loading.loadingData' as string), 2000000)}>
         {t('loading.startLoading' as string)}
       </button>
 

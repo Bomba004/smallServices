@@ -5,8 +5,19 @@ import path from 'path'
 
 // ⚙️ إعدادات Vite
 export default defineConfig({
+  // ⚛️ إضافة دعم React
   plugins: [react()],
+  // 🎨 إعدادات CSS و SCSS
+  css: {
+    preprocessorOptions: {
+      scss: {
+        additionalData: `
+        `
+      }
+    }
+  },
 
+  // 🎯 إعدادات المسارات (Aliases)
   resolve: {
     alias: {
       '~': path.resolve(__dirname, './public'),

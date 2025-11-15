@@ -6,7 +6,8 @@
  */
 
 // استيراد ملف الأنماط الرئيسي
-import '@/main.css';
+// import '@/main.css';
+import '@/styles/main.scss';
 
 // تصدير React و ReactDOM
 export { default as React,

@@ -4,7 +4,7 @@
  * @lastUpdatedAt : [{ "date": "01/11/2025", "by": ["BomBa"], "comment": "مكون شاشة تحميل محسن مع تصميم متجاوب وخصائص الوصولية" }]
  */
 
-import './LoaderScreen.css';
+import './LoaderScreen.scss';
 import { 
   
   useSelector,

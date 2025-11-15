@@ -1,0 +1,115 @@
+// *
+// * 📁 src/styles/helpers/_gc.scss
+// * @description: ملف المساعدات العامة و الكلاسات المتكررة.
+// * @lastUpdatedAt:[{ "date": "2025-09-27", "by": ["BomBa"], "comment": "كتابة الكود الأساسي للملف." }]
+// *
+@use "sass:list";
+@use "sass:meta";
+@use "./var" as v;
+@use "./mixin" as m;
+
+// ------------------------------------------------
+// اقصي حد مسموح به لاحرف الكتابة هي 30:
+.ellipsis{
+  &-30ch { // .ellipsis-30ch
+    max-width: 30ch;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: inline-block;
+  }
+}
+// ------------------------------------------------
+
+
+
+
+//#region  divider [hr]:-
+// الفواصل بين الاقسام:
+.divider{
+  // --primary: var(--primary, hsl(160, 80%, 40%));
+  // --secondary: var(--secondary, hsl(330, 80%, 40%));
+  // --accent: var(--accent, hsl(270, 80%, 40%));
+  --tt: var(--primary, #0000ff);
+  --br: var(--gray, #00ff00);
+  --fs: 100%;
+  
+  & {
+    position: relative;
+    width: 0.125em; 
+    height: 0.125em; 
+    display: block;
+    font-size: var(--fs);
+    border-radius: calc(0.25em * var(--radius, 1));
+    &:not(:has(.icon)){ box-shadow: 0 0 calc(0.8em * var(--shadow, 1)) hsl(from var(--tt) h s l / 40%); }
+  }
+  &.h {width: 90%; &.i { height: fit-content !important; .icon { &::before, &::after { height: 0.125em; } } } --ISdir: right; --ISdirReversed: left; [dir=rtl] & { --ISdir: left; --ISdirReversed: right; } }
+  &.v {height: 90%; &-v.i .icon, &.i{ width: fit-content !important; .icon {flex-direction: column !important; height: 100%; &::before, &::after { width: 0.125em; } } }  --ISdir: bottom; --ISdirReversed: top; }
+  
+  &.n, &.normal, & { background: linear-gradient(to var(--ISdir), transparent, var(--tt) , transparent); }
+  &.f, &.fancy { background: linear-gradient(to var(--ISdir), var(--secondary), var(--primary), var(--accent)); }
+  &.d, &.dotted { background: transparent; border:  0.125em dashed var(--tt); }
+  &.i, &.icon {
+    background: transparent;
+
+    .icon{
+      display: flex;
+      flex-direction: row;
+      justify-content: center;
+      align-items: center;
+      gap: 0.25em;
+      color: var(--tt);
+      font-size: 100%;
+      
+      &::before, &::after {
+        content: '';
+        flex: 1;
+        border-radius: 0.2em;
+        background: linear-gradient(to var(--ISdir), transparent, var(--br));
+      }
+
+      &::after { background: linear-gradient(to var(--ISdirReversed), transparent, var(--br)); }
+    }
+  }
+}
+
+// --- { TO USE } --- { عند الاستخدام } ---
+hr, .hr{border: 0; @extend .divider; @extend .h; }
+.hr-v{ // عند استخدام الفاصل عمودي يفضل استخدام كلاسات flex او تحديد ارتفاع العنصر الاب
+  @extend .divider;
+  @extend .v;
+}
+//#endregion
+
+
+//#region  { Glass Effect }
+
+@mixin glass-effect {
+  background: #hsl(from v.$bg h s l / 10%);
+  backdrop-filter: blur(1.25em);
+  border: 0.0125em solid hsl(from v.$bg h s l / 20%);
+}
+
+//#endregion
+
+//#region  { absolute-cover }
+
+@mixin absolute-cover {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+//#endregion
+
+//#region  { Scrollbar }
+
+  .select{ user-select: text; }
+  .select-none{ user-select: none; }
+
+  .BScrollbar-000 { @include m.Scrollbar(); }
+  // .BScrollbar-000 { @include m.Scrollbar(#ff0); }
+
+//#endregion

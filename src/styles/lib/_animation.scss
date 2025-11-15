@@ -1,0 +1,47 @@
+/* updatedAt--24/10/2024 */
+// https://animista.net/play/basic/slide-bck        |->  موقع للإنميشاً للتحريك
+
+// @use './GFun' as *;
+
+
+/*#region -------------------- { KEYFRAME-ANIMATION } ----------- */
+
+/// @DISC: إنشاء keyframes للتدوير اللانهائي
+@mixin AN__rotate-in-center{--time:2s;--time-s:0s;   -webkit-animation:rotate-in-center var(--time) cubic-bezier(.25,.46,.45,.94) var(--time-s) infinite alternate-reverse both;animation:rotate-in-center var(--time) cubic-bezier(.25,.46,.45,.94) var(--time-s) infinite alternate-reverse both}
+.AN__rotate-in-center{@include AN__rotate-in-center;}
+@-webkit-keyframes rotate-in-center{0%{-webkit-transform:rotate(-360deg);transform:rotate(-360deg);opacity:0}100%{-webkit-transform:rotate(0);transform:rotate(0);opacity:1}}@keyframes rotate-in-center{0%{-webkit-transform:rotate(-360deg);transform:rotate(-360deg);opacity:0}100%{-webkit-transform:rotate(0);transform:rotate(0);opacity:1}}
+
+/// @DISC: إنشاء keyframes دقات لقلب اللانهائي
+@mixin AN__scale-down-center{--time:2s;--time-s:0s;   -webkit-animation:scale-down-center var(--time) cubic-bezier(.895,.03,.685,.22) var(--time-s) infinite alternate-reverse both;animation:scale-down-center var(--time) cubic-bezier(.895,.03,.685,.22) var(--time-s) infinite alternate-reverse both}
+.AN__scale-down-center{@include AN__scale-down-center;}
+@-webkit-keyframes scale-down-center{0%{-webkit-transform:scale(1);transform:scale(1)}100%{-webkit-transform:scale(.5);transform:scale(.5)}}@keyframes scale-down-center{0%{-webkit-transform:scale(1);transform:scale(1)}100%{-webkit-transform:scale(.5);transform:scale(.5)}}
+
+/// @DISC: إنشاء keyframes دقات لقلب اللانهائي
+@mixin AN__scale-up-ver-bottom{--time:1s;--time-s:0s;   -webkit-animation:scale-up-ver-bottom var(--time) cubic-bezier(.175,.885,.32,1.275) var(--time-s) both;animation:scale-up-ver-bottom var(--time) cubic-bezier(.175,.885,.32,1.275) var(--time-s) both}
+.AN__scale-up-ver-bottom{@include AN__scale-up-ver-bottom;}
+@-webkit-keyframes scale-up-ver-bottom{0%{-webkit-transform:scaleY(0);transform:scaleY(0);-webkit-transform-origin:0 100%;transform-origin:0 100%}100%{-webkit-transform:scaleY(1);transform:scaleY(1);-webkit-transform-origin:0 100%;transform-origin:0 100%}}@keyframes scale-up-ver-bottom{0%{-webkit-transform:scaleY(0);transform:scaleY(0);-webkit-transform-origin:0 100%;transform-origin:0 100%}100%{-webkit-transform:scaleY(1);transform:scaleY(1);-webkit-transform-origin:0 100%;transform-origin:0 100%}}
+
+/// ---- ---- ---- ---- ---- ---- ---- ---- ---- ---- ---- ---- ---- ---- ---- ---- ---- ---- ---- ---- ----
+
+/// @DISC: إنشاء keyframes ظهور الضم من الجانبين إلي المنتصف
+@mixin AN__focus-in-contract{--time:2s;--time-s:0s;   -webkit-animation:focus-in-contract var(--time) cubic-bezier(.25,.46,.45,.94) var(--time-s) both;animation:focus-in-contract var(--time) cubic-bezier(.25,.46,.45,.94) var(--time-s) both}
+.AN__focus-in-contract{@include AN__focus-in-contract;}
+@-webkit-keyframes focus-in-contract{0%{letter-spacing:em(1);-webkit-filter:blur(em(12));filter:blur(em(12));opacity:0}100%{-webkit-filter:blur(0);filter:blur(0);opacity:1}}@keyframes focus-in-contract{0%{letter-spacing:em(1);-webkit-filter:blur(em(12));filter:blur(em(12));opacity:0}100%{-webkit-filter:blur(0);filter:blur(0);opacity:1}}
+
+/// @DISC: إنشاء keyframes السحب من الأسفل
+@mixin AN__tracking-in-expand-fwd-bottom{--time:2s;--time-s:0s;   -webkit-animation:tracking-in-expand-fwd-bottom var(--time) cubic-bezier(.215,.61,.355,1.000) var(--time-s) both;animation:tracking-in-expand-fwd-bottom var(--time) cubic-bezier(.215,.61,.355,1.000) var(--time-s) both}
+.AN__tracking-in-expand-fwd-bottom{@include AN__tracking-in-expand-fwd-bottom;}
+@-webkit-keyframes tracking-in-expand-fwd-bottom{0%{letter-spacing:em(-0.5);-webkit-transform:translateZ(em(-700)) translateY(em(500));transform:translateZ(em(-700)) translateY(em(500));opacity:0}40%{opacity:.6}100%{-webkit-transform:translateZ(0) translateY(0);transform:translateZ(0) translateY(0);opacity:1}}@keyframes tracking-in-expand-fwd-bottom{0%{letter-spacing:em(-0.5);-webkit-transform:translateZ(em(-700)) translateY(em(500));transform:translateZ(em(-700)) translateY(em(500));opacity:0}40%{opacity:.6}100%{-webkit-transform:translateZ(0) translateY(0);transform:translateZ(0) translateY(0);opacity:1}}
+
+/*#endregion --------------------------------------------------- */
+
+/// ==== ==== ==== ==== ==== ==== ==== ==== ==== ==== ==== ==== ==== ==== ==== ==== ==== ==== ==== ==== ====
+
+// animation: [animation-name] [animation-duration] [animation-timing-function] [animation-delay] [animation-iteration-count] [animation-direction] [animation-fill-mode] [animation-play-state];
+// animation-name : إسم الحركة.
+// animation-duration : إلى متى ستستمر الحركة (مدة الحركة).
+// animation-timing-function : كيف سيتم حساب الحالات البينية (نوع أو شكل الحركة خلال خط الزمن).
+// animation-delay : عندما تريد بداية الحركة بعد مدة زمنية محددة (فترة إنتظار أو تأخير الحرمة).
+// animation-iteration-count : عدد مرات تكرار الحركة.
+// animation-direction : يحدد إتجاة الحركة (في أي اتجاة سيتم قراءة المراحل داخل القاعدة @keyframes ).
+// animation-fill-mode : أي التنسيقات سيتم تطبيقها قبل بداية الحركة وبعد نهايتها.

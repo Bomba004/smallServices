@@ -9,8 +9,7 @@ npm install
 ``` bash
 npm install @tailwindcss/forms@^0.5.0 @tailwindcss/typography@^0.5.0 autoprefixer postcss lucide-react clsx tailwind-merge @hookform/resolvers zod js-cookie sonner cmdk date-fns uuid @types/uuid
 
-npm install -D @types/js-cookie tailwindcss@^3.3.0 postcss@^8.4.0 autoprefixer@^10.4.0
-
+npm install -D @types/js-cookie tailwindcss@^3.3.0 postcss@^8.4.0 autoprefixer@^10.4.0 sass
 ```
 
 ## [X] - هيكل الملفات:

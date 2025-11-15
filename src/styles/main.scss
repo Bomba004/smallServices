@@ -1,0 +1,26 @@
+
+// * 
+// * 📁 src/styles/main.scss
+// * @description: الملف الرئيسي لربط جميع أنماط SCSS في المشروع.
+// * @lastUpdatedAt:[{ "date": "2025-09-24", "by": ["BomBa"], "comment": "كتابة الكود الأساسي للملف." }]
+// * 
+
+@use './helpers' as h;               // الأدوات المساعدة أولاً
+@use './lib/normalize' as n;         // الأنماط الأساسية و المكانب الخارجية
+// @use './lib/myTailwind' as t;        // مكتبة من صناعتي الخاصة لأنماط شبيهة بمكتبة التايلويند
+@use './base' as base;               // تأسيس المشروع
+// @use './layout' as layout;        // القالب الاساسي للمشروع و الصفح
+// @use './controls' as *;           // أنماط التخطيطات
+// @use './components' as *;         // أنماط المكونات العامة
+// @use './pages' as *;              // أنماط خاصة بالصفحات (إذا وجدت)
+@use './pages/home' as home;         // 
+
+
+
+// @use "globals" as g;
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
