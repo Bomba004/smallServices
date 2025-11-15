@@ -1,4 +1,18 @@
 export default {
+  "CompGlobal": {
+    "BtnLanguage": {
+      "span": "AR",
+      "title": "Change Language",
+      "btnTitle": "Switch Language",
+    },
+    "BtnTheme": {
+      "title": "Change Theme",
+      "btnTitle": "Switch Theme",
+      "span": "🌗",
+    },
+
+    "btnTitle": "Settings",
+  },
   "loading": {
     "pleaseWait": "Please wait...",
     "loading": "Loading",

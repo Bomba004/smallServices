@@ -17,7 +17,7 @@ import HttpBackend from 'i18next-http-backend'
 import { T_Language } from '@/alias'
 
 // 📦 تحميل ملفات JSON ديناميكيًا من مجلد locales
-const locales = import.meta.glob('@/i18n/locales/**/*.json', { eager: true }) as Record<string, any>
+const locales = import.meta.glob('@/i18n/locales/**/*.json', { eager: true }) as Record<string, { default: "en" }>;
 
 // 🧠 اختيار ملف الترجمة المناسب
 const loadTranslation = (lang: T_Language) => {
@@ -66,11 +66,32 @@ const options: InitOptions = {
 
 i18n.use(HttpBackend).use(LanguageDetector).use(initReactI18next).init(options)
 
-// 🌐 تغيير اللغة
+// 🌐 تغيير اللغة وتحديث الرابط (URL)
 export const changeLanguage = (lang: T_Language) => {
   i18n.changeLanguage(lang)
   document.documentElement.lang = lang
   document.documentElement.dir = lang === 'ar' ? 'rtl' : 'ltr'
+
+  // 🔗 تحديث الرابط الحالي ليعكس اللغة الجديدة بدون إعادة تحميل الصفحة
+  if (typeof window !== 'undefined') {
+    const pathParts = window.location.pathname.split('/').filter(Boolean); // إزالة الفراغات
+    const supportedLangs = ['ar', 'en', 'fr'] as const;
+
+    // إذا كان أول جزء لغة بالفعل → استبدله
+    if (supportedLangs.includes(pathParts[0] as T_Language)) {
+      pathParts[0] = lang;
+    } else {
+      // إذا لم يكن، أضف اللغة كبداية للمسار
+      pathParts.unshift(lang);
+    }
+
+    const newPath = '/' + pathParts.join('/');
+    const newUrl = `${window.location.origin}${newPath}${window.location.search}${window.location.hash}`;
+
+    // استبدال الحالة الحالية بدون إعادة تحميل الصفحة
+    window.history.replaceState({}, '', newUrl);
+  }
+  
 }
 // 🚀 تهيئة اللغة عند بدء التطبيق
 export const initLanguage = async () => {

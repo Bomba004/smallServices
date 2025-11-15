@@ -43,6 +43,8 @@ export const useSettings = () => {
   const changeLanguage = useCallback(
     (newLang: T_Language) => {
       try {
+        console.log(newLang);
+        
         dispatch(setLanguage(newLang));
       } catch (error) { console.error('❌ Failed to change language:', error); }
     },

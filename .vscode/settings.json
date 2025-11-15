@@ -1,20 +1,17 @@
 {
-  // ✅ تجاهل الكلمات التي تبدأ بـ "ال"
-  "i18n-ally.extract.ignored": ["ال"],
-
-  // ✅ أسلوب المفاتيح متداخل (nested)
-  "i18n-ally.keystyle": "nested",
-
-  // ✅ المسارات: تأكد أن هذا هو المكان الصحيح لملفات JSON مثل en/translation.json
+  // 📁 المسار الصحيح لملفات الترجمة
   "i18n-ally.localesPaths": [
-    "src/i18n",
     "src/i18n/locales"
   ],
 
-  // ✅ التأكد من أن الإطار المستخدم هو React + i18next
+  // 🌐 اللغات المدعومة
+  "i18n-ally.sourceLanguage": "en",
   "i18n-ally.enabledFrameworks": ["react", "i18next"],
 
-  // ✅ أنواع الملفات التي تدعم الاستخراج
+  // 🔑 أسلوب المفاتيح
+  "i18n-ally.keystyle": "nested",
+
+  // ⚙️ أنواع الملفات التي تزودها الإضافة بالاقتراحات
   "i18n-ally.languageIds": [
     "javascript",
     "typescript",
@@ -22,10 +19,13 @@
     "typescriptreact"
   ],
 
-  // ✅ تفعيل الـ namespaces
+  // 📦 تمكين الـ namespaces
   "i18n-ally.namespace": true,
+  "i18n-ally.defaultNamespace": "translation",
 
-  // ✅ اسم namespace الافتراضي الذي تستخدمه في ملفاتك (translation.json)
-  "i18n-ally.defaultNamespace": "translation.js",
-  "i18n-ally.sourceLanguage": "en"
+  // ❗ إصلاح ضروري عند استخدام i18next مع ملفات JSON خارجية
+  "i18n-ally.experimental.i18nextParser": true,
+
+  // 🔕 تجاهل الكلمات المشابهة للعربية مثل "ال..."
+  "i18n-ally.extract.ignored": ["ال"]
 }

@@ -1,4 +1,18 @@
 export default {
+  "BtnLanguage": {
+    "CompGlobal": {
+      "span": "EN",
+      "title": "تغير اللغة",
+      "btnTitle": "تبديل اللغة",
+    },
+    "BtnTheme": {
+      "title": "تغير الثيم",
+      "btnTitle": "تبديل الثيم",
+      "span": "🌗",
+    },
+    
+    "btnTitle": "الإعدادات",
+  },
   "loading": {
     "pleaseWait": "يرجى الانتظار...",
     "loading": "جاري التحميل",

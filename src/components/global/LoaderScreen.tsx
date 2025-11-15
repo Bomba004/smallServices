@@ -18,7 +18,7 @@ interface LoaderScreenProps {
 }
 
 export const LoaderScreen: React.FC<LoaderScreenProps> = ({ className }) => {
-    const { t, i18n } = useTranslation() // Hook الترجمة
+    const { t } = useTranslation() // Hook الترجمة
   const { active, message } = useSelector((state: RootState) => state.loader);
 
   if (!active) return null;

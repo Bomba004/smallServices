@@ -14,7 +14,7 @@ import {
 
   } from '@/alias';
 
-  const _testLoading = 5000; // محاكاة وقت تحميل البيانات بالمللي ثانية
+  const _testLoading = 50; // محاكاة وقت تحميل البيانات بالمللي ثانية
 
 // المكون الرئيسي للتطبيق
 function App() {

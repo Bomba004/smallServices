@@ -110,33 +110,9 @@ const settingsSlice = createSlice({
     setLanguage: (state, action: PayloadAction<T_Language>) => {
       const newLang = action.payload;
       state.language = newLang;
-
-      // 🈶 تطبيق اللغة على الـ DOM
-      document.documentElement.lang = newLang;
-      document.documentElement.dir = newLang === 'ar' ? 'rtl' : 'ltr';
-
       // 🌍 تحديث اللغة في i18n أو النظام الخارجي
       changeLanguage(newLang);
-
-      // 🔗 تحديث الرابط الحالي ليعكس اللغة الجديدة بدون إعادة تحميل الصفحة
-      if (typeof window !== 'undefined') {
-        const pathParts = window.location.pathname.split('/').filter(Boolean); // إزالة الفراغات
-        const supportedLangs = ['ar', 'en', 'fr'] as const;
-
-        // إذا كان أول جزء لغة بالفعل → استبدله
-        if (supportedLangs.includes(pathParts[0] as T_Language)) {
-          pathParts[0] = newLang;
-        } else {
-          // إذا لم يكن، أضف اللغة كبداية للمسار
-          pathParts.unshift(newLang);
-        }
-
-        const newPath = '/' + pathParts.join('/');
-        const newUrl = `${window.location.origin}${newPath}${window.location.search}${window.location.hash}`;
-
-        // استبدال الحالة الحالية بدون إعادة تحميل الصفحة
-        window.history.replaceState({}, '', newUrl);
-      }
+      console.log('1: ',newLang);
     },
 
 

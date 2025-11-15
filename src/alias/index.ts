@@ -34,12 +34,16 @@ export * from '@/store/slices/loaderSlice';   // Actions من Slice الإعدا
 export * from '@/store/slices/settingsSlice'; // Actions من Slice الإعدادات
 
 // تصدير مكونات واجهة المستخدم (components, BUI)
+export { Modal } from '@/components/BUI/modal';
+export { Button } from '@/components/BUI/button';
+// Global Components
 export { LoaderScreen } from '@/components/global/LoaderScreen';
+export { BtnLanguage } from '@/components/global/btnLanguage';
+export { BtnTheme } from '@/components/global/btnTheme';
+
 export { Header } from '@/components/layout/header';
 export { ContactList } from '@/components/contacts/contact-list';
 export { ContactForm } from '@/components/contacts/contact-form';
-export { Modal } from '@/components/BUI/modal';
-export { Button } from '@/components/BUI/button';
 
 // تصدير المكون الرئيسي للتطبيق
 export { default as App } from '@/App';

@@ -4,10 +4,11 @@
  * @lastUpdatedAt : [{ "date": "31/10/2025", "by": ["BomBa"], "comment": "ملف لرأس التطبيق مع دعم تبديل الثيم واللغة باستخدام أنماط Tailwind CSS" }]
  */
 
-import { Button, Languages, Moon, Settings, Sun, useTranslation, 
-  useSettings,
+import { Button, Settings, useTranslation, 
+  BtnLanguage,
+  BtnTheme,
   // useLocalization, useTheme,
- } from "@/alias";
+  } from "@/alias";
 
 
 
@@ -16,11 +17,9 @@ interface HeaderProps { onSettingsOpen: () => void; }
 
 // مكون رأس التطبيق
 export const Header: React.FC<HeaderProps> = ({ onSettingsOpen }) => {
-// 🧠 قراءة الإعدادات من Cookies وتطبيقها مبكرًا
-const { theme, language, changeTheme, changeLanguage } = useSettings()
-
-  // const { language, setLanguage, t } = useLocalization();
-  const { t } = useTranslation() // Hook الترجمة
+// 🧠 قراءة اللغة من Cookies وتطبيقها مبكرًا
+const { t } = useTranslation() // Hook الترجمة
+// const { language, setLanguage, t } = useLocalization();
 
 
   return (
@@ -33,39 +32,23 @@ const { theme, language, changeTheme, changeLanguage } = useSettings()
               <span className="text-white font-bold">📒</span>
             </div>
             <h1 className="text-xl font-bold text-gray-900 dark:text-white">
-              {t('appTitle')}
+              {t('app.title')}
             </h1>
           </div>
 
           {/* عناصر التحكم */}
           <div className="flex items-center gap-2">
             {/* تبديل اللغة */}
-            <Button
-              variant="ghost"
-              size="sm"
-              onClick={() => changeLanguage(language === 'ar' ? 'en' : 'ar')}
-              title={language === 'ar' ? 'Switch to English' : 'التغيير إلى العربية'}
-            >
-              <Languages className="w-4 h-4" />
-              <span className="mr-2">{language === 'ar' ? 'EN' : 'AR'}</span>
-            </Button>
-
+            <BtnLanguage />
             {/* تبديل الثيم */}
-            <Button
-              variant="ghost"
-              size="sm"
-              onClick={() => { changeTheme(theme === 'light' ? 'dark' : 'light'); }}
-              title="تبديل المظهر"
-            >
-              {theme === 'dark' ? ( <Sun className="w-4 h-4" /> ) : ( <Moon className="w-4 h-4" /> )}
-            </Button>
-
+            <BtnTheme />
             {/* الإعدادات */}
             <Button
               variant="ghost"
               size="sm"
               onClick={onSettingsOpen}
-              title="الإعدادات"
+              title={t('CompGlobal.btnTitle' as string)}
+
             >
               <Settings className="w-4 h-4" />
             </Button>
