@@ -10,14 +10,15 @@
 
 // ------------------------------------------------
 // اقصي حد مسموح به لاحرف الكتابة هي 30:
+%ellipsis-base {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: inline-block;
+}
 .ellipsis{
-  &-30ch { // .ellipsis-30ch
-    max-width: 30ch;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    display: inline-block;
-  }
+  &-12ch { max-width: 12ch; @extend %ellipsis-base; } // .ellipsis-12ch
+  &-30ch { max-width: 30ch; @extend %ellipsis-base; } // .ellipsis-30ch
 }
 // ------------------------------------------------
 
@@ -109,7 +110,62 @@ hr, .hr{border: 0; @extend .divider; @extend .h; }
   .select{ user-select: text; }
   .select-none{ user-select: none; }
 
-  .BScrollbar-000 { @include m.Scrollbar(); }
+  .BScrollbar-000 { @include m.Scrollbar($width:0.5rem); } //     يفضل هذا المقاس لشريط التمرير لمتصفح (Firefox) 
   // .BScrollbar-000 { @include m.Scrollbar(#ff0); }
 
 //#endregion
+
+
+
+
+.bg{
+  &1 { background: #f002; }
+  &2 { background: #00f2; }
+  &3 { background: #ff02; }
+  &4 { background: #0f02; }
+  &5 { background: #f0f2; }
+}
+.b{
+  &1 { border: 0.1em solid #f00; }
+  &2 { border: 0.1em solid #00f; }
+  &3 { border: 0.1em solid #ff0; }
+  &4 { border: 0.1em solid #0f0; }
+  &5 { border: 0.1em solid #f0f; }
+}
+
+
+/* === Global Tooltip Style === */
+
+[tooltip] {
+  position: relative;
+  cursor: pointer; // اختياري
+}
+
+/* الـ Tooltip الأساسي */
+[tooltip]:hover::after {
+  content: attr(tooltip);
+  position: absolute;
+  bottom: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  background: #ff0;
+  color: #00f;
+  padding: 8px 12px;
+  border-radius: 4px;
+  white-space: nowrap;
+  font-size: 14px;
+  pointer-events: none;
+  z-index: 1000;
+}
+
+/* مثلث صغير تحت الـ Tooltip */
+[tooltip]:hover::before {
+  content: "";
+  position: absolute;
+  bottom: calc(100% - 2px);
+  left: 50%;
+  transform: translateX(-50%);
+  border-width: 6px;
+  border-style: solid;
+  border-color: #ff0 transparent transparent transparent;
+}

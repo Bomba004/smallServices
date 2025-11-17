@@ -20,18 +20,20 @@ export const Header: React.FC<HeaderProps> = ({ onSettingsOpen }) => {
 // 🧠 قراءة اللغة من Cookies وتطبيقها مبكرًا
 const { t } = useTranslation() // Hook الترجمة
 // const { language, setLanguage, t } = useLocalization();
-
+const imag_logo = `/images/icons/logo.svg#logo_001`;
 
   return (
-    <header className="border-b border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-800">
-      <div className="container mx-auto px-4 py-4">
+    <header className="">
+      <div className="container mx-auto px-4 py-4 | ">
         <div className="flex items-center justify-between">
-          {/* العنوان */}
+          {/* الشعار و العنوان */}
           <div className="flex items-center gap-3">
-            <div className="w-8 h-8 bg-blue-600 rounded-md flex items-center justify-center">
-              <span className="text-white font-bold">📒</span>
-            </div>
-            <h1 className="text-xl font-bold text-gray-900 dark:text-white">
+            {/* <img src={imag_logo} alt="Logo" className="w-8 h-8" /> */}
+            <svg className="w-8 h-8"> <use href={imag_logo} /> </svg>
+
+            <h1 className="text-xl font-bold text-gray-900 dark:text-white | ellipsis-12ch"
+              title={t('app.title')}
+            >
               {t('app.title')}
             </h1>
           </div>
@@ -55,6 +57,8 @@ const { t } = useTranslation() // Hook الترجمة
           </div>
         </div>
       </div>
+
+      <hr className="w-full f"/>
     </header>
   );
 };

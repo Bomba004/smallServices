@@ -43,6 +43,7 @@ export { BtnLanguage } from '@/components/global/btnLanguage';
 export { BtnTheme } from '@/components/global/btnTheme';
 
 export { Header } from '@/components/layout/header';
+export { Footer } from '@/components/layout/footer';
 export { ContactList } from '@/components/contacts/contact-list';
 export { ContactForm } from '@/components/contacts/contact-form';
 

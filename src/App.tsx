@@ -7,8 +7,10 @@
 import {
   useState, useEffect, 
   LoaderScreen,
+  Header, Footer,
 
-  Contact, useContacts, Header, ContactList, ContactForm, Modal, Button, Plus, Toaster, toast,
+  Contact, useContacts,
+  ContactList, ContactForm, Modal, Button, Plus, Toaster, toast,
   useSettings,
   TEST,
 
@@ -126,20 +128,56 @@ function App() {
   <>
     {/* <Toaster position="top-right" richColors /> */} {/* كومبوننت رسائل الاشعارات */}
     <LoaderScreen /> {/* شاشة التحميل العامة */}
-    <div className="min-h-screen | app">
+    <div className="min-h-screen | app pr1">
       {/* الرأس */}
       <Header onSettingsOpen={() => setIsSettingsModalOpen(true)} />
-      <h1>{t('loading.loadingData' as string)}</h1>
-      <h1>{t('app.title')}</h1>
 
-      <br />
-      <TEST />
-      <br />
+      <main className='bg1'>
+        <br />
 
-      <button onClick={() => loaderProcess(async () => { console.log('loader...'); }, t('loading.loadingData' as string), 2000000)}>
-        {t('loading.startLoading' as string)}
-      </button>
+        <h1>{t('loading.loadingData' as string)}</h1>
+        <h1>{t('app.title')}</h1>
+        
+        <br />
+        <button onClick={() => loaderProcess(async () => { console.log('loader...'); }, t('loading.loadingData' as string), 20000)}>
+          {t('loading.startLoading' as string)}
+        </button>
 
+        <br />
+        <TEST />
+      
+        <br />
+        <hr className='hr' />
+      
+        <br />
+        <TEST />
+        <br />
+        <TEST />
+        <br />
+        <TEST />
+        <br />
+        <TEST />
+        <br />
+        <TEST />
+        <br />
+        <TEST />
+        <br />
+        <TEST />
+        <br />
+        <TEST />
+        <br />
+        <TEST />
+        <br />
+        <TEST />
+        <br />
+        <TEST />
+        <br />
+        <TEST />
+        <br />
+
+      </main>
+
+      <Footer />
     </div>
   </>
   );
