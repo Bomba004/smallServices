@@ -32,7 +32,7 @@ const imag_logo = `/images/icons/logo.svg#logo_001`;
             <svg className="w-8 h-8"> <use href={imag_logo} /> </svg>
 
             <h1 className="text-xl font-bold text-gray-900 dark:text-white | ellipsis-12ch"
-              title={t('app.title')}
+              B-title={t('app.title')}
             >
               {t('app.title')}
             </h1>

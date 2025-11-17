@@ -9,6 +9,7 @@
 // import '@/main.css';
 import '@/styles/main.scss';
 
+
 // تصدير React و ReactDOM
 export { default as React,
   JSX, lazy,
@@ -18,7 +19,8 @@ export { default as React,
   } from 'react';
 export * as ReactDOM from 'react-dom/client';
 
-// تصدير دوال وأدوات مساعدة {Hooks}
+// تصدير دوال وأدوات مساعدة {Lib - Hooks}
+export { initTippy } from '@/lib/initTippy'; //  تصدير تهيئة Tippy.js
 export { createRoot } from 'react-dom/client'
 export { useContacts } from '@/hooks/use-contacts';
 export { useSettings } from '@/hooks/use-settings';
@@ -56,8 +58,11 @@ export { useTranslation } from 'react-i18next';
 export * from '@/i18n/config';
 
 
-// تصدير مكتبة التنبيهات
-export { toast, Toaster } from 'sonner';
+
+// تصدير المكاتب الخارجية
+export { default as tippy } from 'tippy.js'; // تصدير مكتبة التولتيب tippy.js
+export { toast, Toaster } from 'sonner'; // تصدير مكتبة الإشعارات sonner
+
 // تصدير أيقونات من مكتبة lucide-react
 export { Plus, Sun, Moon, Settings, Languages  } from 'lucide-react';
 

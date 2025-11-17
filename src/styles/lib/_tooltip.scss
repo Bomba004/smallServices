@@ -1,0 +1,40 @@
+// * 
+// * @file : 📁 src/styles/lab/_tooltip.scss
+// * @version : 1.0.0
+// * @lastUpdatedAt: [ { "date": "2025/09/27", "by": ["BomBa"], "comment": "إنشاء ملف المتغيرات" } ]
+// * 
+
+@use '../helpers' as h;                 // الأدوات المساعدة أولاً
+
+//* تنسيقات إضافية 
+:root { --tooltip-z-index: 9999; }
+.tippy-box { z-index: var(--tooltip-z-index); }
+
+// variables
+$tooltip-bg: h.$tt;
+$tooltip-color: h.$bg;
+$tooltip-shadow: 0 h.em(2) h.em(12) h.ShadowColor(hsl(from h.$sy h s l / 100%));
+
+/* تنسيقات Tippy الأساسية */
+.tippy-box {
+  &{
+    padding: 0.2em 0.5em;
+    background-color: $tooltip-bg;
+    color: $tooltip-color;
+    font-size: 75%;
+    line-height: 140%;
+    @include h.Radius(0.5em);
+    @include h.Shadow($tooltip-shadow);
+  }
+  
+  &[data-placement^='top'] > .tippy-arrow::before { border-top-color: $tooltip-bg; }
+  &[data-placement^='bottom'] > .tippy-arrow::before { border-bottom-color: $tooltip-bg; }
+  &[data-placement^='left'] > .tippy-arrow::before { border-left-color: $tooltip-bg; }
+  &[data-placement^='right'] > .tippy-arrow::before { border-right-color: $tooltip-bg; }
+}
+
+
+.tippy-box[data-theme~='gradient'] {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: #fff;
+}

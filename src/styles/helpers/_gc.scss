@@ -1,8 +1,10 @@
 // *
-// * 📁 src/styles/helpers/_gc.scss
+// * @file : 📁 src/styles/helpers/_gc.scss
+// * @version : 1.0.0
 // * @description: ملف المساعدات العامة و الكلاسات المتكررة.
-// * @lastUpdatedAt:[{ "date": "2025-09-27", "by": ["BomBa"], "comment": "كتابة الكود الأساسي للملف." }]
-// *
+// * @lastUpdatedAt:[{ "date": "2025/09/27", "by": ["BomBa"], "comment": "كتابة الكود الأساسي للملف." }]
+// * 
+
 @use "sass:list";
 @use "sass:meta";
 @use "./var" as v;
@@ -45,7 +47,7 @@
     &:not(:has(.icon)){ box-shadow: 0 0 calc(0.8em * var(--shadow, 1)) hsl(from var(--tt) h s l / 40%); }
   }
   &.h {width: 90%; &.i { height: fit-content !important; .icon { &::before, &::after { height: 0.125em; } } } --ISdir: right; --ISdirReversed: left; [dir=rtl] & { --ISdir: left; --ISdirReversed: right; } }
-  &.v {height: 90%; &-v.i .icon, &.i{ width: fit-content !important; .icon {flex-direction: column !important; height: 100%; &::before, &::after { width: 0.125em; } } }  --ISdir: bottom; --ISdirReversed: top; }
+  &.v {height: 90%; &-i .icon, &.i{ width: fit-content !important; .icon {flex-direction: column !important; height: 100%; &::before, &::after { width: 0.125em; } } }  --ISdir: bottom; --ISdirReversed: top; }
   
   &.n, &.normal, & { background: linear-gradient(to var(--ISdir), transparent, var(--tt) , transparent); }
   &.f, &.fancy { background: linear-gradient(to var(--ISdir), var(--secondary), var(--primary), var(--accent)); }
@@ -86,9 +88,9 @@ hr, .hr{border: 0; @extend .divider; @extend .h; }
 //#region  { Glass Effect }
 
 @mixin glass-effect {
-  background: #hsl(from v.$bg h s l / 10%);
+  background: #hsl(from $bg h s l / 10%);
   backdrop-filter: blur(1.25em);
-  border: 0.0125em solid hsl(from v.$bg h s l / 20%);
+  border: 0.0125em solid hsl(from $bg h s l / 20%);
 }
 
 //#endregion
@@ -131,41 +133,4 @@ hr, .hr{border: 0; @extend .divider; @extend .h; }
   &3 { border: 0.1em solid #ff0; }
   &4 { border: 0.1em solid #0f0; }
   &5 { border: 0.1em solid #f0f; }
-}
-
-
-/* === Global Tooltip Style === */
-
-[tooltip] {
-  position: relative;
-  cursor: pointer; // اختياري
-}
-
-/* الـ Tooltip الأساسي */
-[tooltip]:hover::after {
-  content: attr(tooltip);
-  position: absolute;
-  bottom: 100%;
-  left: 50%;
-  transform: translateX(-50%);
-  background: #ff0;
-  color: #00f;
-  padding: 8px 12px;
-  border-radius: 4px;
-  white-space: nowrap;
-  font-size: 14px;
-  pointer-events: none;
-  z-index: 1000;
-}
-
-/* مثلث صغير تحت الـ Tooltip */
-[tooltip]:hover::before {
-  content: "";
-  position: absolute;
-  bottom: calc(100% - 2px);
-  left: 50%;
-  transform: translateX(-50%);
-  border-width: 6px;
-  border-style: solid;
-  border-color: #ff0 transparent transparent transparent;
 }

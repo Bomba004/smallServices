@@ -12,17 +12,26 @@ import {
   Contact, useContacts,
   ContactList, ContactForm, Modal, Button, Plus, Toaster, toast,
   useSettings,
+  initTippy,
+  // tippy,
+
   TEST,
 
   } from '@/alias';
 
   const _testLoading = 50; // محاكاة وقت تحميل البيانات بالمللي ثانية
 
+
 // المكون الرئيسي للتطبيق
 function App() {
   //#region 00 - تحميل البيانات الأولي عند بدء التطبيق, مع عرض شاشة التحميل
-    useEffect(() => { loaderProcess(async () => {}, t('loading.loadingData' as string),  _testLoading || 300 ); }, []);
+    useEffect(() => { loaderProcess(async () => {
+      // eslint-disable-next-line react-hooks/rules-of-hooks
+      initTippy("[B-title]");
+      
+    }, t('loading.loadingData' as string),  _testLoading || 300 ); }, []);
   //#endregion ====-====-====-====-====-====-====-====-====-====-====-====-====-====-====-====-====
+
 
   const [isAddModalOpen, setIsAddModalOpen] = useState(false);
   const [isSettingsModalOpen, setIsSettingsModalOpen] = useState(false);
@@ -133,6 +142,15 @@ function App() {
       <Header onSettingsOpen={() => setIsSettingsModalOpen(true)} />
 
       <main className='bg1'>
+        <br />
+
+      <button data-tippy-content="This works!">
+        Hover me
+      </button>
+      <span B-title="Custom tooltip">
+        Hover here too
+      </span>
+
         <br />
 
         <h1>{t('loading.loadingData' as string)}</h1>

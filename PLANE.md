@@ -7,9 +7,9 @@ npm install
 
 ## [X] -  تثبيت المكتبات المطلوبة:
 ``` bash
-npm install @tailwindcss/forms@^0.5.0 @tailwindcss/typography@^0.5.0 autoprefixer postcss lucide-react clsx tailwind-merge @hookform/resolvers zod js-cookie sonner cmdk date-fns uuid @types/uuid
+npm install @tailwindcss/forms@^0.5.0 @tailwindcss/typography@^0.5.0 autoprefixer postcss lucide-react clsx tailwind-merge @hookform/resolvers zod js-cookie sonner cmdk date-fns uuid @types/uuid tippy.js
 
-npm install -D @types/js-cookie tailwindcss@^3.3.0 postcss@^8.4.0 autoprefixer@^10.4.0 sass
+npm install -D @types/js-cookie tailwindcss@^3.3.0 postcss@^8.4.0 autoprefixer@^10.4.0 sass @types/tippy.js
 ```
 
 ## [X] - هيكل الملفات:
@@ -103,3 +103,11 @@ touch src/{App.tsx,main.tsx}
 ## [ ] - :
 ```
 ```
+
+<!-- //? GitHub Commit:
+T:0.0.4
+  - التحضير لاستخدام مكتبة tippy.js, تم إضافة ضبط خاص للمكتبة بإصدار | v:1.0.0
+
+----- ----- ----- ----- -----
+
+-->

@@ -1,8 +1,10 @@
-// 
-// * 📁 src/styles/helpers/_mixin.scss
+// *
+// * @file : 📁 src/styles/helpers/_mixin.scss
+// * @version : 1.0.0
 // * @description: ملف المعادلات و الدوال المنطقية.
 // * @lastUpdatedAt:[{ "date": "2024-09-10", "by": ["BomBa"], "comment": "كتابة الكود الأساسي للملف." }]
-// 
+// * 
+
 @use 'sass:map';
 @use 'sass:list';
 @use "sass:meta";
@@ -108,9 +110,9 @@
 /// @DISC: ✅ Mixin: Shadow مع البادئات والشرط
 /// @EX:
 ///         .element {
-///           @EX-1  --shadow: 1; @include Shadow(0 0 1em hsla(0, 0%, 0%, 0.25));
-///           @EX-2  --shadow: 1; @include Shadow( 0 2px 4px rgba(0, 0, 0, 0.1), 0 4px 8px rgba(0, 0, 0, 0.1) );
-///           @EX-3  --shadow: 0; @include Shadow(0 0 1em hsla(0, 0%, 0%, 0.25)); // ❌ لن يُطبق
+///           @EX-1  --shadow: 1; @include Shadow(0 0 1em ShadowColor(hsla(0, 0%, 0%, 0.25)));
+///           @EX-2  --shadow: 1; @include Shadow( 0 2px 4px ShadowColor(rgba(0, 0, 0, 0.1)), 0 4px 8px ShadowColor(rgba(0, 0, 0, 0.1) ));
+///           @EX-3  --shadow: 0; @include Shadow(0 0 1em ShadowColor(hsla(0, 0%, 0%, 0.25)));  // ❌ لن يُطبق
 ///         }
 @mixin Shadow($shadows...) {
   $shadowValue: null;

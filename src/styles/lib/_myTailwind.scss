@@ -1,9 +1,11 @@
 
 // *
-// * 📁 src/styles/lab/_myTailwind.scss
+// * @file : 📁 src/styles/lab/_myTailwind.scss
+// * @version : 1.0.0
 // * @description: [ ]TODO: هذا الملف يحتوي على إعدادات Tailwind المخصصة, يتم استخدامه لتسهيل تطوير الواجهة, يجب حذفه قبل رفع المشروع و تسليمة, لا ينصح به في المشاريع كبيرة الحجم.
-// * @lastUpdatedAt: [ { "date": "2025-09-27", "by": ["BomBa"], "comment": "إنشاء ملف المتغيرات" } ]
-// *
+// * @lastUpdatedAt: [ { "date": "2025/09/27", "by": ["BomBa"], "comment": "إنشاء ملف المتغيرات" } ]
+// * 
+
 @use '../helpers' as h;                 // الأدوات المساعدة أولاً
 @use 'sass:math';
 

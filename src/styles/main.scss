@@ -1,8 +1,9 @@
 
 // * 
-// * 📁 src/styles/main.scss
+// * @file : 📁 src/styles/main.scss
+// * @version : 1.0.0
 // * @description: الملف الرئيسي لربط جميع أنماط SCSS في المشروع.
-// * @lastUpdatedAt:[{ "date": "2025-09-24", "by": ["BomBa"], "comment": "كتابة الكود الأساسي للملف." }]
+// * @lastUpdatedAt:[{ "date": "2025/09/24", "by": ["BomBa"], "comment": "كتابة الكود الأساسي للملف." }]
 // * 
 
 @use './helpers' as h;               // الأدوات المساعدة أولاً
@@ -13,10 +14,16 @@
 // @use './controls' as *;           // أنماط التخطيطات
 // @use './components' as *;         // أنماط المكونات العامة
 // @use './pages' as *;              // أنماط خاصة بالصفحات (إذا وجدت)
-@use './pages/home' as home;         // 
+// @use './pages/home' as home;         // 
 
 
 
 // @use "globals" as g;
 
 
+
+// *
+// * @file : 📁 src/styles/pages/_home.scss
+// * @version : 1.0.0
+// * @lastUpdatedAt:[{ "date": "2025/11/17", "by": ["BomBa"], "comment": "" }]
+// * 

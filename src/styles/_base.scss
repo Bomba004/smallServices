@@ -1,13 +1,16 @@
 // * 
-// * 📁 src/styles/_base.scss
+// * @file : 📁 src/styles/_base.scss
+// * @version : 1.0.0
 // * @description: الملف التأسيسي في المشروع.
-// * @lastUpdatedAt:[{ "date": "2025-10-04", "by": ["BomBa"], "comment": "كتابة الكود الأساسي للملف." }]
+// * @lastUpdatedAt:[{ "date": "2025/11/17", "by": ["BomBa"], "comment": "كتابة الكود الأساسي للملف." }]
 // * 
+
 
 // @use './_utils' as u;                 // الأدوات المساعدة أولاً
 @use './helpers' as h;                 // الأدوات المساعدة أولاً
 @use './lib/myTailwind' as t;        // مكتبة من صناعتي الخاصة لأنماط شبيهة بمكتبة التايلويند
 @use './lib/Tailwind' as *;        // مكتبة من صناعتي الخاصة لأنماط شبيهة بمكتبة التايلويند
+@use './lib/tooltip' as *;        // مكتبة من صناعتي الخاصة لأنماط شبيهة بمكتبة التايلويند
 
 $py: h.$py;
 $bg: h.$bg;
@@ -136,3 +139,10 @@ main {
 
   //#endregion
   
+
+
+  
+
+
+
+
