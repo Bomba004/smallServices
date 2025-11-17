@@ -25,12 +25,16 @@ import {
 // المكون الرئيسي للتطبيق
 function App() {
   //#region 00 - تحميل البيانات الأولي عند بدء التطبيق, مع عرض شاشة التحميل
-    useEffect(() => { loaderProcess(async () => {
-      // eslint-disable-next-line react-hooks/rules-of-hooks
-      initTippy("[B-title]");
-      
-    }, t('loading.loadingData' as string),  _testLoading || 300 ); }, []);
+    useEffect(() => { loaderProcess(async () => {}, t('loading.loadingData' as string),  _testLoading || 300 ); }, []);
   //#endregion ====-====-====-====-====-====-====-====-====-====-====-====-====-====-====-====-====
+
+  
+  // const { t, i18n } = useTranslation() // Hook الترجمة
+  const { t, i18n, loaderProcess } = useSettings();
+
+  useEffect(() => {
+    initTippy(); // يعاد بناء tippy عند تغيير اللغة
+  }, [i18n.language]); // 👈 حل المشكلة هنا
 
 
   const [isAddModalOpen, setIsAddModalOpen] = useState(false);
@@ -46,9 +50,6 @@ function App() {
     updateContact,
     softDeleteContact
   } = useContacts();
-
-  // const { t, i18n } = useTranslation() // Hook الترجمة
-  const { t, i18n, loaderProcess } = useSettings();
 
   // معالجة إضافة جهة اتصال جديدة
   const handleAddContact = async (contactData: any) => {
