@@ -1,0 +1,24 @@
+{
+  "compilerOptions": {
+    "target": "ESNext",                           // 🎯 تحديد نوع الكود الناتج (أحدث إصدار من JavaScript)
+    "lib": ["DOM", "DOM.Iterable", "ESNext"],     // 📚 تضمين مكتبات TypeScript القياسية
+    "module": "ESNext",                           // 📦 استخدام نظام الموديولات الحديث
+    "moduleResolution": "Node",                   // 🧭 حل الموديولات بطريقة Node.js
+    "jsx": "react-jsx",                           // ⚛️ دعم JSX مع React 17+
+    "esModuleInterop": true,                      // 🔄 تمكين التوافق مع وحدات ES
+    "allowSyntheticDefaultImports": true,         // 🌟 السماح بالاستيراد الافتراضي للموديولات غير الافتراضية
+    "skipLibCheck": true,                         // ⏭️ تخطي فحص ملفات التعريف للمكتبات
+    "forceConsistentCasingInFileNames": true,     // 🛡️ فرض التناسق في حالة أسماء الملفات
+    "strict": true,                               // 🔒 تمكين جميع خيارات التحقق الصارم
+    "resolveJsonModule": true,                    // 📥 السماح باستيراد ملفات JSON كموديولات
+    "baseUrl": ".",                               // 🏠 تعيين الدليل الأساسي للمشروع, تمكين تعريف المسارات المطلقة (aliases)
+    "paths": {                                    // 🛣️ إعداد مسارات الموديولات المخصصة
+      "~/*": ["public/*"],                        // مثال: استيراد من 'public' باستخدام '~/'
+      "@/*": ["src/*"],                           // مثال: استيراد من 'src' باستخدام '@/' 
+      "@components/*": ["src/components/*"]       // مثال: استيراد من 'src/components' باستخدام '@components/'
+    }
+  },
+
+  // 📂 تضمين جميع الملفات في مجلد 'src'
+  "include": ["src", "public/locales", "global.d.ts"]
+}

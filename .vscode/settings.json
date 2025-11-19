@@ -1,0 +1,31 @@
+{
+  // 📁 المسار الصحيح لملفات الترجمة
+  "i18n-ally.localesPaths": [
+    "src/i18n/locales"
+  ],
+
+  // 🌐 اللغات المدعومة
+  "i18n-ally.sourceLanguage": "en",
+  "i18n-ally.enabledFrameworks": ["react", "i18next"],
+
+  // 🔑 أسلوب المفاتيح
+  "i18n-ally.keystyle": "nested",
+
+  // ⚙️ أنواع الملفات التي تزودها الإضافة بالاقتراحات
+  "i18n-ally.languageIds": [
+    "javascript",
+    "typescript",
+    "javascriptreact",
+    "typescriptreact"
+  ],
+
+  // 📦 تمكين الـ namespaces
+  "i18n-ally.namespace": true,
+  "i18n-ally.defaultNamespace": "translation",
+
+  // ❗ إصلاح ضروري عند استخدام i18next مع ملفات JSON خارجية
+  "i18n-ally.experimental.i18nextParser": true,
+
+  // 🔕 تجاهل الكلمات المشابهة للعربية مثل "ال..."
+  "i18n-ally.extract.ignored": ["ال"]
+}

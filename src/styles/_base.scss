@@ -1,0 +1,148 @@
+// * 
+// * @file : 📁 src/styles/_base.scss
+// * @version : 1.0.0
+// * @description: الملف التأسيسي في المشروع.
+// * @lastUpdatedAt:[{ "date": "2025/11/17", "by": ["BomBa"], "comment": "كتابة الكود الأساسي للملف." }]
+// * 
+
+
+// @use './_utils' as u;                 // الأدوات المساعدة أولاً
+@use './helpers' as h;                 // الأدوات المساعدة أولاً
+@use './lib/myTailwind' as t;        // مكتبة من صناعتي الخاصة لأنماط شبيهة بمكتبة التايلويند
+@use './lib/Tailwind' as *;        // مكتبة من صناعتي الخاصة لأنماط شبيهة بمكتبة التايلويند
+@use './lib/tooltip' as *;        // مكتبة من صناعتي الخاصة لأنماط شبيهة بمكتبة التايلويند
+
+$py: h.$py;
+$bg: h.$bg;
+$tt: h.$tt;
+
+$ff: h.$font-family;
+
+//#region /* base */
+
+// Bast Normalize:
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  border-color: hsla($tt, 0);
+
+  // outline
+  outline-color: inherit;
+}
+// *{ @extend .BScrollbar-000 }
+
+*:not(input[text], input[number], input[email], input[password]) {
+  @include h.Prefix('user-select', none);
+}
+
+*::selection {
+  background: $py;
+  color: $bg;
+  text-shadow: none;
+}
+
+* input {
+  @include h.Prefix('text-fill-color', $tt);
+}
+
+html,
+body {
+  font-family: $ff;
+  overflow: hidden;
+  // @extend .BScrollbar-000;
+}
+
+i {
+  font-style: normal;
+}
+
+body {
+  // Tailwind base transitions
+  @include h.Transition((
+    color,
+    background-color,
+    border-color,
+    text-decoration-color,
+    fill,
+    stroke
+  ), 200ms, cubic-bezier(0.4, 0, 0.2, 1), 0ms);
+
+  // size & pos
+  margin-top: env(safe-area-inset-top);
+  min-width: h.em(320);
+  min-height: 100dvh;
+
+  background: $bg;
+  color: $tt;
+  fill: $tt;
+
+  
+  // fonts
+  // font smoothing
+  @include h.Prefix(-webkit-font-smoothing, antialiased);
+  @include h.Prefix(-moz-osx-font-smoothing, grayscale);
+  font-family: $ff;
+  font-size: 1rem;
+
+  // flex-col
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+
+  // text overflow
+  overflow-wrap: break-word;
+  white-space: nowrap;
+
+}
+
+/* ROOT */
+#root, .root, #app, .app {
+  // position: absolute;
+  width: 100%;
+  height: 100dvh;
+  @extend .flex-col;
+}
+
+
+main {
+  flex: 1;
+  margin-inline: auto;
+  width: 360px;
+  // overflow: auto;
+  overflow: hidden;
+  
+  $padding: h.em(16);
+  padding-inline: $padding;
+  &:hover {
+    padding-inline-end: #{$padding - h.em(8)}; // تقليل الحشو عند التمري & 6.4 قيمة حجم شريط التمرير الرئسي
+    overflow: auto;
+    @extend .BScrollbar-000;
+  }
+}
+
+  
+  
+  /* منع المتصفح من تغيير خلفية الحقل عند الإكمال التلقائي */
+  input:-webkit-autofill,
+  input:-webkit-autofill:hover,
+  input:-webkit-autofill:focus,
+  input:-webkit-autofill:active {
+    -webkit-text-fill-color: inherit !important;
+    /* تغيير لون النص إلى أحمر */
+    -webkit-box-shadow: 0 0 0 h.rem(1000) transparent inset !important;
+    /* إزالة الخلفية */
+    // transition: background-color 5000s ease-in-out 0s !important; /* منع التغيير التلقائي للخلفية */
+    @include h.Transition((background-color, 5000s, ease-in-out, 0s));
+  }
+
+  //#endregion
+  
+
+
+  
+
+
+
+

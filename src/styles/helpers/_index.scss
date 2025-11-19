@@ -1,0 +1,11 @@
+// *
+// * @file : 📁 src/styles/helpers/_index.scss
+// * @version : 1.0.0
+// * @lastUpdatedAt:[{ "date": "2025/09/24", "by": ["BomBa"], "comment": "كتابة الكود الأساسي للملف." }]
+// *
+
+@forward './var';                    // variables
+
+// @forward './fun';                 // functions
+@forward './mixin';                  // mixins
+@forward './gc';                     // global classes
