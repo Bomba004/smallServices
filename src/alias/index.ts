@@ -15,11 +15,12 @@ export { default as React,
   JSX, lazy,
   useState, useEffect, useCallback,
   StrictMode,
-
-  } from 'react';
+  
+} from 'react';
 export * as ReactDOM from 'react-dom/client';
 
 // تصدير دوال وأدوات مساعدة {Lib - Hooks}
+export { cn } from "@/lib/utils"; // مكتبة لدمج className بداخل الكائن 
 export { initTippy } from '@/lib/initTippy'; //  تصدير تهيئة Tippy.js
 export { createRoot } from 'react-dom/client'
 export { useContacts } from '@/hooks/use-contacts';
@@ -39,6 +40,7 @@ export * from '@/store/slices/settingsSlice'; // Actions من Slice الإعدا
 // تصدير مكونات واجهة المستخدم (components, BUI)
 export { Modal } from '@/components/BUI/modal';
 export { Button } from '@/components/BUI/button';
+export * from '@/components/BUI/img';
 // Global Components
 export { LoaderScreen } from '@/components/global/LoaderScreen';
 export { BtnLanguage } from '@/components/global/btnLanguage';

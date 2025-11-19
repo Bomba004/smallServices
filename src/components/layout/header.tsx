@@ -5,6 +5,7 @@
  */
 
 import { Button, Settings, useTranslation, 
+  IMG,
   BtnLanguage,
   BtnTheme,
   // useLocalization, useTheme,
@@ -29,7 +30,8 @@ const imag_logo = `/images/icons/logo.svg#logo_001`;
           {/* الشعار و العنوان */}
           <div className="flex items-center gap-3">
             {/* <img src={imag_logo} alt="Logo" className="w-8 h-8" /> */}
-            <svg className="w-8 h-8"> <use href={imag_logo} /> </svg>
+            {/* <svg className="w-8 h-8"> <use href={imag_logo} /> </svg> */}
+            <IMG src={imag_logo} />
 
             <h1 className="text-xl font-bold text-gray-900 dark:text-white | ellipsis-12ch"
               B-title={t('app.title')}
